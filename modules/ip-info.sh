@@ -6,9 +6,9 @@ echo "b - UKF AiS"
 read domcho
 
 if [[ "$domcho" == "a" ]]; then
-    url="https://studentmail.ukf.sk/webmail/"
+    url="studentmail.ukf.sk"
 elif [[ "$domcho" == "b" ]]; then
-    url="https://ais2.ukf.sk/ais/start.do"
+    url="ais2.ukf.sk"
 else
     echo "Nespravna volba"
     exit 1
