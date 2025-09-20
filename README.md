@@ -53,6 +53,12 @@ Postup na inštaláciu a spustenie skriptu je následnový:
 - Pridelíme spustitelné práva `find . -type f \( -name "*.sh" -o -name "*.py" \) -exec chmod a+x {} +`
 - Spustíme nástroj `./ikmu.sh`
 
+<p align="center">
+  <img src="images/menu.PNG" alt="Obrázok 1 Menu nástroja IKMU" width="700"/>
+  <br>
+  <i>Obrázok 1 Menu nástroja IKMU</i>
+</p>
+
 ## Možný problém pri spustení modulov
 Pri spustení môžu nastať errory ako `$'\r': command not found`. Jedná sa o problém, kde skript má Windows konce riadkov (CRLF) (\r), preto shell vidí neexistujúce príkazy ako `clear\r` a `shebang/case` sú poškodené.
 
