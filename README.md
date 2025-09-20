@@ -54,7 +54,7 @@ Postup na inštaláciu a spustenie skriptu je následnový:
 - Spustíme nástroj `./ikmu.sh`
 
 <p align="center">
-  <img src="images/menu.PNG" alt="Obrázok 1 Menu nástroja IKMU" width="700"/>
+  <img src="images/menu_update.PNG" alt="Obrázok 1 Menu nástroja IKMU" width="700"/>
   <br>
   <i>Obrázok 1 Menu nástroja IKMU</i>
 </p>
