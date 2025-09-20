@@ -54,7 +54,7 @@ Postup na inštaláciu a spustenie skriptu je následnový:
 - Spustíme nástroj `./ikmu.sh`
 
 ## Možný problém pri spustení modulov
-Pri spustení môžu nastať errory ako `$'\r': command not found`. Jedná sa o problém, kde skript má Windows konce riadkov (CRLF) (\r), preto shell vidí neexistujúce príkazy ako clear\r a shebang/case sú poškodené.
+Pri spustení môžu nastať errory ako `$'\r': command not found`. Jedná sa o problém, kde skript má Windows konce riadkov (CRLF) (\r), preto shell vidí neexistujúce príkazy ako `clear\r` a `shebang/case` sú poškodené.
 
 ### Vyrišenie problému
   1. Vykonaj príkaz: `sudo apt update && sudo apt install -y dos2unix`
