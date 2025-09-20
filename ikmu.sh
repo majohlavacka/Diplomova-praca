@@ -30,20 +30,22 @@ fi
 echo "###################################"
 echo "#           IKnowMyUni            #"
 echo "###################################"
-echo "Vyberte moznost"
-echo "a = Testovanie odozvy a Rate-limitingu"
-echo "b = Generovat hesla"
-echo "c = Brute-force na UKF Webmail"
-echo "d = Brute-force na UKF AiS"
-echo "e = Zistenie HTTP hlaviciek"
-echo "f = Zistenie technologii"
-echo "g = Zistenie IP adresy a polohy"
-echo "i = Hladat heslo vo vytvorenom zozname"
-echo "h = Napoveda"
-echo "x = Ukoncit nastroj"
+echo
+echo "[*] Dostupne moznosti:"
+echo
+echo "[a] Testovanie odozvy a Rate-limitingu"
+echo "[b] Generovat hesla"
+echo "[c] Brute-force na UKF Webmail"
+echo "[d] Brute-force na UKF AiS"
+echo "[e] Zistenie HTTP hlaviciek"
+echo "[f] Zistenie technologii"
+echo "[g] Zistenie IP adresy a polohy"
+echo "[i] Hladat heslo vo vytvorenom zozname"
+echo "[h] Napoveda"
+echo "[x] Ukoncit nastroj"
 
-
-read -p "Moznost: " choice
+echo
+read -p "[*] Moznost: " choice
 
 case "$choice" in
   a) modules/ping-uni.sh ;;
