@@ -3,7 +3,8 @@ Tento nástroj slúži ako diplomová práca ktorá sa zameriava na penetračné
 Nástroj nesie názov `IKnowMyUni (skrátene IKMU)` a v súčasnosti obsahuje sedem modulov, pričom na vývoji ďalších sa stále pracuje
 
 # Download
-Na stiahnutie treba použiť `wget https://github.com/majohlavacka/Diplomova-praca` a následne treba sprviť súbory .sh a .py spustitelné. Vykonajte príkaz `find . -type f \( -name "*.sh" -o -name "*.py" \) -exec chmod a+x {} +`, pričom bodka zabezpečuje to, aby v danom adresáry a podadresároch našiel všetky .sh, .py súbory a pridelil im príkazom `chmod a+x` spustitelné práva. 
+- Na stiahnutie treba použiť `wget https://github.com/majohlavacka/Diplomova-praca` a následne treba sprviť súbory .sh a .py spustitelné.
+- Vykonajte príkaz `find . -type f \( -name "*.sh" -o -name "*.py" \) -exec chmod a+x {} +`, pričom bodka zabezpečuje to, aby v danom adresáry a podadresároch našiel všetky .sh, .py súbory a pridelil im príkazom `chmod a+x` spustitelné práva. 
 
 # Hlavný program 
 Hlavný program nesie názov `ikmu.sh` a jeho spustenie je možné 2 spôsobmi `./ikmu.sh` alebo `bash ikmu.sh`. Pre vysvetlívky je treba pridať ešte `-h` alebo `--help`, napr. `./ikmu.sh -h`. 
