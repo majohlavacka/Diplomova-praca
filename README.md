@@ -13,7 +13,7 @@ Obsahuje hlavné menu, ktoré volá jednotlivé možnosti.
 # Moduly
 Nástroj obsahuje dokopy 7 modulov a na vývoji ďalších sa pracuje. Jednotlivé moduly získavajú citlivé alebo inak užitočné údaje z domén UKF Webmail a AiS. 
 
-## Modul: a) Testovanie odozvy a Rat
+## Modul: a) Testovanie odozvy a Rate-limitingu
 Tento modul sa zameriava na posielanie GET požiadaviek a kontrolu statusu odpovede a času odozvy. Pomocou tohto modulu môžeme testovať a predpokladať rate-limiting alebo CAPTCHA mechanizmy. 
 
 ## Modul: b) Generovat hesla
@@ -23,7 +23,7 @@ Tento modul slúži na generovanie hesla založeného na rodnom čísle. Heslo s
 Pre tento modul je potrebné zadať username, ktoré je buď číslo na ISIC karte alebo emailová adresa študenta. Následne sa odosiela POST požiadavka, ktorá obsahuje username a potencionálne vygenerované heslo z modulu b) Generovat hesla. V prípade úspešného prelomenia hesla sa vypíšu údaje: meno, heslo a session ID do konzole a taktiež sa pošlu aj na definovaný Discord server. Následne je možné využiť údaje ako prihlásanie priamo do účtu alebo stačí vložiť ID relácie do cookies pod premenou `roundcube_sessid` a prihlásenie prebehne úspešne, navyše sa tak využíva zranitelnosť Session Hijacking.
 
 ## Modul: d) Brute-force na UKF AiS
-Na vývoji sa pracuje.
+Pre tento modul je potrebné zadať username, ktoré predstavuje naše osobné ID číslo a nájdedme ho na ISICu (emailova adresa pri AiS logine nefunguje). Následne sa odosiela POST požiadavka, ktorá obsahuje username a potencionálne vygenerované heslo z modulu b) Generovat hesla. V prípade úspešného prelomenia hesla sa vypíšu údaje: meno, heslo a session ID do konzole a taktiež sa pošlu aj na definovaný Discord server. Následne je možné využiť údaje ako prihlásanie priamo do účtu alebo stačí vložiť ID relácie do cookies pod premenou `JSESSIONID` a prihlásenie prebehne úspešne. 
 
 ## Modul: e) Zistenie HTTP hlaviciek
 Tento modul zisťuje dostupné HTTP hlavičky zo zoznamu headers. Je možné do zoznamu pridať ďalšie hlavičky a kontrolovať tak bezpečnostné nastavenia servera, čo poskytuje lepší prehľad o jeho konfigurácii.
@@ -73,5 +73,5 @@ Pri spustení môžu nastať errory ako `$'\r': command not found`. Jedná sa o 
 - Autor nenesie žiadnu zodpovednosť za prípadné zneužitie nástroja
 
 # Autor
-MH
+**MH**
 
