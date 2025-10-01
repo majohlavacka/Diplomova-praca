@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 echo "[*] Zadaj URL na testovanie:"
 echo "[a] UKF Webmail"
@@ -32,4 +32,5 @@ if echo "$headers" | grep -iq "nginx"; then
 elif echo "$headers" | grep -iq "apache"; then
     echo "[+] Server bezi na Apache"
 fi
+
 
