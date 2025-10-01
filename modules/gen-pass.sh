@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 echo "[*] Zadaj prefix hesla (presne 6 cislic):"
 read -p "Prefix: " prefix
@@ -32,3 +32,4 @@ done
 pocetHesiel=$(wc -l < passwords.txt)
 echo "[+] Hesla uspesne zapisane"
 echo "[+] Pocet hesiel: $pocetHesiel"
+
