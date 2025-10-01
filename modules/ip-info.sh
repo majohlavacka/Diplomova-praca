@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 echo "[*] Zvol URL na testovanie:"
 echo "[a] UKF Webmail"
@@ -23,3 +23,4 @@ echo "-------------------------"
 
 curl "ipinfo.io/$IP"
 echo
+
