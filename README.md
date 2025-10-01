@@ -31,7 +31,7 @@ Knižnice:
   
 ## Modul: d) Brute-force na UKF AiS (python)
 Pre tento modul je potrebné zadať username, ktoré predstavuje naše osobné ID číslo a nájdedme ho na ISICu (emailova adresa pri AiS logine nefunguje). Následne sa odosiela POST požiadavka, ktorá obsahuje username a potencionálne vygenerované heslo z modulu b) Generovat hesla. V prípade úspešného prelomenia hesla sa vypíšu údaje: meno, heslo a session ID do konzole a taktiež sa pošlu aj na definovaný Discord server. Následne je možné využiť údaje ako prihlásanie priamo do účtu alebo stačí vložiť ID relácie do cookies pod premenou `JSESSIONID` a prihlásenie prebehne úspešne. 
-Knižnice v tomto programe majú rovnakú funkciu ako v module c). 
+Knižnice v tomto programe majú rovnakú funkciu ako v module `c) Brute-force na UKF Webmail (python)`. 
 
 ## Modul: e) Zistenie HTTP hlaviciek
 Tento modul zisťuje dostupné HTTP hlavičky zo zoznamu headers. Je možné do zoznamu pridať ďalšie hlavičky a kontrolovať tak bezpečnostné nastavenia servera, čo poskytuje lepší prehľad o jeho konfigurácii.
