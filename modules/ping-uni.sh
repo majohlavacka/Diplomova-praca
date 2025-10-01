@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 echo "[*] Zvol URL na testovanie:"
 echo "[a] UKF Webmail"
@@ -22,3 +22,4 @@ for i in $(seq 1 "$rq"); do
     echo "$response"
     sleep 2
 done
+
