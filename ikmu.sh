@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 clear
 
@@ -63,3 +63,4 @@ fi
 
 # zavolanie menu
 menu
+
