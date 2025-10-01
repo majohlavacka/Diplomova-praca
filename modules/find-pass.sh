@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 echo "[*] Hladane heslo v passwords.txt ? : "
 read -p "Heslo: " f
@@ -11,4 +11,5 @@ if [ $? -eq 0 ]; then
 else
   echo "[-] Heslo sa v zozname nenachadza"
 fi
+
 
