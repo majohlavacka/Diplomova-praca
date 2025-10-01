@@ -9,6 +9,7 @@ Nástroj nesie názov `IKnowMyUni (skrátene IKMU)` a v súčasnosti obsahuje se
 # Hlavný program 
 Hlavný program nesie názov `ikmu.sh` a jeho spustenie je možné 2 spôsobmi `./ikmu.sh` alebo `bash ikmu.sh`. Pre vysvetlívky je treba pridať ešte `-h` alebo `--help`, napr. `./ikmu.sh -h`. 
 Obsahuje hlavné menu, ktoré volá jednotlivé možnosti.
+Každý Bash skript obsahuje shebang `#!/usr/bin/env bash`. Tento prístup zabezpečí, že sa použije bash, ktorý je dostupný v systéme používateľa (podľa jeho PATH). Vďaka tomu sú skripty prenosnejšie a môžu fungovať na rôznych UNIX systémoch, kde bash nemusí byť uložený na fixnej ceste ako `/bin/bash`.
 
 # Moduly
 Nástroj obsahuje dokopy 7 modulov a na vývoji ďalších sa pracuje. Jednotlivé moduly získavajú citlivé alebo inak užitočné údaje z domén UKF Webmail a AiS. 
@@ -19,11 +20,18 @@ Tento modul sa zameriava na posielanie GET požiadaviek a kontrolu statusu odpov
 ## Modul: b) Generovat hesla
 Tento modul slúži na generovanie hesla založeného na rodnom čísle. Heslo sa tvorí tak, že sa stanoví prefix odvodený z dátumu narodenia, ku ktorému sa pridávajú kombinácie čísel. Celé číslo musí byť deliteľné číslom 11, aby mohlo predstavovať potenciálne platné rodné číslo a slúžiť ako heslo.
 
-## Modul: c) Brute-force na UKF Webmail
-Pre tento modul je potrebné zadať username, ktoré je buď číslo na ISIC karte alebo emailová adresa študenta. Následne sa odosiela POST požiadavka, ktorá obsahuje username a potencionálne vygenerované heslo z modulu b) Generovat hesla. V prípade úspešného prelomenia hesla sa vypíšu údaje: meno, heslo a session ID do konzole a taktiež sa pošlu aj na definovaný Discord server. Následne je možné využiť údaje ako prihlásanie priamo do účtu alebo stačí vložiť ID relácie do cookies pod premenou `roundcube_sessid` a prihlásenie prebehne úspešne, navyše sa tak využíva zranitelnosť Session Hijacking.
+## Modul: c) Brute-force na UKF Webmail (python)
+Pre tento modul je potrebné zadať `username`, ktoré je buď číslo na ISIC karte alebo emailová adresa študenta. Následne sa odosiela POST požiadavka, ktorá obsahuje username a potencionálne vygenerované heslo z modulu `b) Generovat hesla`. V prípade úspešného prelomenia hesla sa vypíšu údaje: meno, heslo a session ID do konzole a taktiež sa pošlu aj na definovaný Discord server. Následne je možné využiť údaje ako prihlásanie priamo do účtu alebo stačí vložiť ID relácie do cookies pod premenou `roundcube_sessid` a prihlásenie prebehne úspešne, navyše sa tak využíva zranitelnosť Session Hijacking.
 
-## Modul: d) Brute-force na UKF AiS
+Knižnice:
+- `requests` — externá knižnica na posielanie HTTP požiadaviek. V našom programe využívame POST požiadavku, ktorá je zodpovedná za odoslanie prihlasovacích formulárov, získanie HTTP stavového kódu a cookies z odpovede.
+- `sys` — súčasť štandardnej knižnice Pythonu. V našom programe sa používa na ukončenie programu s konkrétnym návratovým kódom `sys.exit` a na vypisovanie chýb na štandardný chybový výstup `file=sys.stderr`.
+- `time` - súčasť štandardnej knižnice Pythonu. Používa sa na vloženie pauzy medzi jednotlivými pokusmi o prihlásenie `time.sleep`, čím sa znižuje riziko, že server zablokuje požiadavky kvôli príliš rýchlemu bruteforce prístupu.
+- `random` - súčasť štandardnej knižnice Pythonu. V programe sa používa spolu s `time.sleep` na generovanie náhodného čakania medzi pokusmi `random.uniform(0.8, 1.5))` aby požiadavky neprichádzali presne pravidelne a pôsobili menej bot-like.
+  
+## Modul: d) Brute-force na UKF AiS (python)
 Pre tento modul je potrebné zadať username, ktoré predstavuje naše osobné ID číslo a nájdedme ho na ISICu (emailova adresa pri AiS logine nefunguje). Následne sa odosiela POST požiadavka, ktorá obsahuje username a potencionálne vygenerované heslo z modulu b) Generovat hesla. V prípade úspešného prelomenia hesla sa vypíšu údaje: meno, heslo a session ID do konzole a taktiež sa pošlu aj na definovaný Discord server. Následne je možné využiť údaje ako prihlásanie priamo do účtu alebo stačí vložiť ID relácie do cookies pod premenou `JSESSIONID` a prihlásenie prebehne úspešne. 
+Knižnice v tomto programe majú rovnakú funkciu ako v module c). 
 
 ## Modul: e) Zistenie HTTP hlaviciek
 Tento modul zisťuje dostupné HTTP hlavičky zo zoznamu headers. Je možné do zoznamu pridať ďalšie hlavičky a kontrolovať tak bezpečnostné nastavenia servera, čo poskytuje lepší prehľad o jeho konfigurácii.
