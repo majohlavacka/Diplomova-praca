@@ -45,6 +45,9 @@ Tento modul umožňuje vybrať doménu UKF Webmail alebo AiS, zistí jej IP adre
 ## Modul: i) Hladat heslo vo vytvorenom zozname
 Tento modul vyhľadáva zadaný reťazec prostreddníctvom nástroja `grep` a teda heslo vo vytvorenom súbore `passwords.txt` ktoré pochádza z modulu b) Generovat hesla.
 
+## Modul: j) Skenovanie otvorených portov 
+Modul vo vývoji.
+
 ## Možnosť h) a možnosť x)
 - `h` - vypíše vysvetlivky k jednotlivým modulom.
 - `x` - ukončí program
