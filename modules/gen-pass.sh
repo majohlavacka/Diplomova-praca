@@ -9,14 +9,14 @@ if [[ ! "$prefix" =~ ^[0-9]{6}$ ]]; then
   exit 1
 fi
 
-if [[ -e passwords.txt ]]; then
+if [[ -e modules/passwords.txt ]]; then
   echo "[?] Chcete premazat existujuce hesla y/n ?"
   read wannadel
   if [[ "$wannadel" = "y" ]]; then
-    > passwords.txt
+    > modules/passwords.txt
     echo "[+] Subor premazany"
   else
-    touch passwords.txt
+    touch modules/passwords.txt
     echo "[+] Pridavam dalsie hesla do suboru"
   fi
 fi
@@ -25,11 +25,10 @@ for i in $(seq 0 9999); do
   potentionalPass="${prefix}${i}"
   # 10# zabezpeci aby cisla boli desiatkove, inak su osmickove
   if (( 10#$potentionalPass % 11 == 0 )); then
-    echo "$potentionalPass" >> passwords.txt
+    echo "$potentionalPass" >> modules/passwords.txt
   fi
 done
 
-pocetHesiel=$(wc -l < passwords.txt)
+pocetHesiel=$(wc -l < modules/passwords.txt)
 echo "[+] Hesla uspesne zapisane"
 echo "[+] Pocet hesiel: $pocetHesiel"
-
