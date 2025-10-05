@@ -1,15 +1,11 @@
 #!/usr/bin/env bash
 
-echo "[*] Hladane heslo v passwords.txt ? : "
-read -p "Heslo: " f
+read -p "[*] Hladane heslo v passwords.txt ? Heslo: " f
 echo
 
-grep -i -q "$f" passwords.txt &> /dev/null
-
-if [ $? -eq 0 ]; then
-  echo "[+] Uspech, heslo najdene: $f"
+if grep -i -q "$f" modules/passwords.txt &> /dev/null; then
+  found=$(grep -i -n "$f" modules/passwords.txt)
+  echo "[+] Uspech, heslo najdene (riadok:heslo): $found"
 else
   echo "[-] Heslo sa v zozname nenachadza"
 fi
-
-
