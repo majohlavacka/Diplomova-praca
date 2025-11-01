@@ -57,4 +57,5 @@ for pw in payloads:
     else:
         print(f"[FAIL] {pw} | status: {resp.status_code}")
         
-    time.sleep(random.uniform(0.8, 1.5))  # Pauza medzi 0.8 a 1.5 sekundy
+    time.sleep(random.uniform(300, 350))  # Pauza medzi 300 - 350 sekundami
+
