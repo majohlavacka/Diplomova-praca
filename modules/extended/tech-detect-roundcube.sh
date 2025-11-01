@@ -18,8 +18,19 @@ if echo "$cookies" | grep -iq "roundcube_sessid"; then
   found=1
 fi
 
-# Skontroluj typicke endpointy
-for endpoint in "" "?_task=login" "?_task=mail" "?_task=logout"; do
+# Získaj HTML hlavnej stránky
+html=$(curl -s -L "$URL")
+
+# Extrahuj endpointy s ?_task=
+endpoints=$(echo "$html" | grep -Eo '(\?_task=[a-zA-Z0-9_]+)' | sort -u)
+
+# Ak sa nič nenašlo, aspoň skúsi základný
+if [ -z "$endpoints" ]; then
+  endpoints=""
+fi
+
+# Prejdi všetky endpointy
+for endpoint in $endpoints; do
   full_url="${URL}${endpoint}"
   resp=$(curl -s -L "$full_url")
   if echo "$resp" | grep -Eiq "rcmail|roundcube_logo|rcube_webmail|rcmail.set_env"; then
