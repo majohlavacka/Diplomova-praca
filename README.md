@@ -59,7 +59,7 @@ Obsahuje textové súbory, ktoré obsahujú prihlasovacie údaje v prípade prel
 Rozšírenie pre určité klasické moduly.
 
 ## Extended modul: Zistenie webového klienta v rámci modulu f)
-Modul analyzuje webovú aplikáciu a na základe kombinácie cookies, HTML obsahu, známych alebo dynamicky zistených endpointov (?_task=…) a špecifických HTTP hlavičiek identifikuje prítomnosť webmail klienta `Roundcube`. 
+Modul analyzuje webovú aplikáciu a na základe kombinácie cookies, HTML obsahu, známych alebo dynamicky zistených endpointov (?_task=…) a špecifických HTTP hlavičiek identifikuje a potvrdzuje prítomnosť webmail klienta `Roundcube`. 
 
 # Použitie nástroja v zariadení Raspberry Pi 
 Nástroj je možné využiť aj na menšiom zariadení ako je RPi. 
