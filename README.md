@@ -52,6 +52,12 @@ Modul vo vývoji.
 - `h` - vypíše vysvetlivky k jednotlivým modulom.
 - `x` - ukončí program
 
+# Logs
+Obsahuje textové súbory, ktoré obsahujú prihlasovacie údaje v prípade prelomenia hesla.
+
+# Extended
+Rozšírenie pre určité klasické moduly.
+
 # Použitie nástroja v zariadení Raspberry Pi 
 Nástroj je možné využiť aj na menšiom zariadení ako je RPi. 
 Postup na inštaláciu a spustenie skriptu je následnový: 
