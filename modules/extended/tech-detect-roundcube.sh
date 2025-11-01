@@ -3,7 +3,7 @@
 URL="$1"
 
 if [ -z "$URL" ]; then
-  echo "[*] Pouzitie: $0 https://studentmail.ukf.sk/webmail/"
+  echo "[?] Pouzitie: $0 https://studentmail.ukf.sk/webmail/"
   exit 1
 fi
 
@@ -14,7 +14,7 @@ echo "[*] Kontrolujem URL: $URL"
 # Skontroluj cookies
 cookies=$(curl -s -L -I "$URL" | grep -i 'Set-Cookie')
 if echo "$cookies" | grep -iq "roundcube_sessid"; then
-  echo "[+] Cookie naznacuje Roundcube (roundcube_sessid)"
+  echo "[+] Cookie naznacuje Roundcube"
   found=1
 fi
 
