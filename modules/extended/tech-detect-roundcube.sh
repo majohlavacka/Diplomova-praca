@@ -18,13 +18,13 @@ if echo "$cookies" | grep -iq "roundcube_sessid"; then
   found=1
 fi
 
-# Získaj HTML hlavnej stránky
+# Ziskaj HTML hlavnej stranky
 html=$(curl -s -L "$URL")
 
 # Extrahuj endpointy s ?_task=
 endpoints=$(echo "$html" | grep -Eo '(\?_task=[a-zA-Z0-9_]+)' | sort -u)
 
-# Ak sa nič nenašlo, aspoň skúsi základný
+# Ak sa nic nenaslo, aspon skusi zakladnu URL
 if [ -z "$endpoints" ]; then
   endpoints=""
 fi
