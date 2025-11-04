@@ -11,6 +11,12 @@ Hlavný program nesie názov `ikmu.sh` a jeho spustenie je možné 2 spôsobmi `
 Obsahuje hlavné menu, ktoré volá jednotlivé možnosti.
 Každý Bash skript obsahuje shebang `#!/usr/bin/env bash`. Tento prístup zabezpečí, že sa použije bash, ktorý je dostupný v systéme používateľa (podľa jeho PATH). Vďaka tomu sú skripty prenosnejšie a môžu fungovať na rôznych UNIX systémoch, kde bash nemusí byť uložený na fixnej ceste ako `/bin/bash`.
 
+<p align="center">
+  <img src="diagrams/component_diagram.png" alt="Obrázok 1 Diagram komponentov" width="700"/>
+  <br>
+  <i>Obrázok 1 Diagram komponentov</i>
+</p>
+
 # Moduly
 Nástroj obsahuje dokopy 7 modulov a na vývoji ďalších sa pracuje. Jednotlivé moduly získavajú citlivé alebo inak užitočné údaje z domén UKF Webmail a AiS. 
 
@@ -74,9 +80,9 @@ Postup na inštaláciu a spustenie skriptu je následnový:
 - Spustíme nástroj `./ikmu.sh`
 
 <p align="center">
-  <img src="images/menu_update.PNG" alt="Obrázok 1 Menu nástroja IKMU" width="700"/>
+  <img src="images/menu_update.PNG" alt="Obrázok 2 Menu nástroja IKMU" width="700"/>
   <br>
-  <i>Obrázok 1 Menu nástroja IKMU</i>
+  <i>Obrázok 2 Menu nástroja IKMU</i>
 </p>
 
 ## Možný problém pri spustení modulov
