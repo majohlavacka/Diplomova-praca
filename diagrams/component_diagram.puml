@@ -1,0 +1,46 @@
+@startuml
+' Component diagram
+title Diagram komponentov: Nástroj "I Know My Uni"
+
+package "Diplomova-Praca" {
+  component "ikmu.sh" as ikmu <<Main Bash>>
+
+  package modules {
+    component "brute-ais.py" as brute_ais <<Python>>
+    component "brute-webmail.py" as brute_webmail <<Python>>
+    component "scan-ports.sh" as scan_ports <<Bash>>
+    component "http-headers.sh" as http_headers <<Bash>>
+    component "tech-detect.sh" as tech_detect <<Bash>>
+    component "find-pass.sh" as find_pass <<Bash>>
+    component "gen-pass.sh" as gen_pass <<Bash>>
+    component "ip-info.sh" as ip_info <<Bash>>
+    component "ping-uni.sh" as ping_uni <<Bash>>
+  }
+
+  package extended {
+    component "detect-round.sh" as detect_round <<Bash>>
+  }
+
+  component "logs/" as logs <<Folder>>
+  artifact "log_found_ais.txt" as log_found_ais <<Text File>>
+  artifact "log_found_webmail.txt" as log_found_webmail <<Text File>>
+  artifact "passwords.txt" as passwords <<Text File>>
+}
+
+ikmu --> brute_ais
+ikmu --> brute_webmail
+ikmu --> scan_ports
+ikmu --> http_headers
+ikmu --> find_pass
+ikmu --> gen_pass
+ikmu --> ip_info
+ikmu --> tech_detect
+ikmu --> ping_uni
+tech_detect --> detect_round
+
+brute_ais ..> logs : Vytvorí
+brute_webmail ..> logs : Vytvorí
+logs ..> log_found_ais : Zapíše
+logs ..> log_found_webmail : Zapíše
+gen_pass ..> passwords : Vytvorí a zapíše 
+@enduml
