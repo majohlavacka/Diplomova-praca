@@ -1,11 +1,11 @@
 @startuml
-title Sekvenčný diagram: Modul na brute-forcovanie UKF Webmail
+title Sekvenčný diagram: Modul na brute-forcovanie UKF AiS
 
 participant "ikmu.sh\n(main)" as IKMU
-participant "brute-webmail.py\n(module)" as brute_module
+participant "brute-ais.py\n(module)" as brute_module
 participant "modules/passwords.txt\n(wordlist)" as Wordlist
-participant "https://studentmail.ukf.sk/webmail/\n(HTTP cieľ)" as Webmail
-participant "modules/logs/log_found_webmail.txt\n(log súbor)" as LogFile
+participant "https://ais2.ukf.sk/ais/login.do\n(HTTP cieľ)" as AIS
+participant "modules/logs/log_found_ais.txt\n(log súbor)" as LogFile
 participant "Discord webhook\n(Discord server)" as Discord
 participant "stdout" as Console
 
@@ -19,11 +19,11 @@ alt wordlist nenájdený
 end
 
 loop
-    brute_module -> Webmail : POST /login (data, headers, cookies)
-    Webmail --> brute_module : HTTP response (status_code, headers, cookies)
+    brute_module -> AIS : POST /ais/login.do (data, headers, cookies)
+    AIS --> brute_module : HTTP response (status_code, headers, cookies)
   
-    alt úspech (status_code == 302 AND and sess_cookie )
-      brute_module -> Console : vypíše FOUND, meno, heslo a roundcube_sessid
+    alt úspech (status_code == 302 AND location.startswith ("/ais/apps/student/sk"))
+      brute_module -> Console : vypíše FOUND, meno, heslo a JSESSIONID
       brute_module -> LogFile : vytvorí a zapíše údaje do logovacieho súboru 
       alt Discord chyba
         Discord --> brute_module : exception
