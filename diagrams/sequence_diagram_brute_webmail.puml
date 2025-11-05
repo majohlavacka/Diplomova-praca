@@ -1,5 +1,5 @@
 @startuml
-title Sekvenčný diagram: modul na brute-forcovanie UKF Webmail
+title Sekvenčný diagram: Modul na brute-forcovanie UKF Webmail
 
 participant "ikmu.sh\n(main)" as IKMU
 participant "brute-webmail.py\n(module)" as brute_module
@@ -18,22 +18,25 @@ alt wordlist nenájdený
   brute_module --> IKMU : návrat s chybou
 end
 
-  brute_module -> Webmail : POST /login (form data: _user, _pass, _action, _token, cookies)
-  Webmail --> brute_module : HTTP response (status_code, cookies)
-
-  alt úspech (status_code == 302 AND roundcube_sessid cookie)
-    brute_module -> Console : vypíše FOUND, meno, heslo a id relácie
-    brute_module -> LogFile : vytvorí a zapíše údaje do logovacieho súboru
-    brute_module -> Discord : Odošle údaje na Discord server
-    alt Discord chyba
-      Discord --> brute_module : exception
-      brute_module -> Console : vypíše chybu pri odoslaní údajov na Discord
+loop
+    brute_module -> Webmail : POST /login (form data: _user, _pass, _action, _token, cookies)
+    Webmail --> brute_module : HTTP response (status_code, cookies)
+  
+    alt úspech (status_code == 302 AND roundcube_sessid cookie)
+      brute_module -> Console : vypíše FOUND, meno, heslo a id relácie
+      brute_module -> LogFile : vytvorí a zapíše údaje do logovacieho súboru
+      alt Discord chyba
+        Discord --> brute_module : exception
+        brute_module -> Console : vypíše chybu pri odoslaní údajov na Discord
+      end
+      brute_module -> Discord : odošle údaje na Discord server
+      brute_module --> IKMU : Ukonči program
+     end
+    alt neúspech
+     brute_module -> Console : vypíše FAIL, skúšané heslo a status kód
     end
-    break neúspech
-    brute_module -> Console : vypíše FAIL, skúšané heslo a status kód
-  end
-
-  brute_module -> brute_module : opakovanie po pauze: time.sleep(random.uniform(300, 350))
+      brute_module -> brute_module : opakovanie po pauze: time.sleep(random.uniform(300, 350))
 end
 
+brute_module -> Console : heslo sa nenašlo
 @enduml
