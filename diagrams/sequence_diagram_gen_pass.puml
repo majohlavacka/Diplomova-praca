@@ -1,0 +1,38 @@
+@startuml
+title Sekvenčný diagram: Testovanie odozvy servera
+
+participant "ikmu.sh\n(main)" as IKMU
+participant "gen-pass.sh\n(modul)" as Modul
+participant "modules/passwords.txt\n(File)" as File
+participant "stdout" as Console
+
+
+IKMU -> Modul : spustenie nástroja a výber modulu
+Modul -> File : prefix hesla (6 číslic)
+
+alt ! "$prefix" =~ ^[0-9]{6}$
+  File --> Modul : exception
+  Modul -> Console : prefix musí obsahovať presne 6 číslic (0-9)
+  Modul --> IKMU : návrat s chybou 
+end
+
+Modul -> File : premezať existujúce hesla ?
+
+alt "$wannadel" = "y" 
+  Modul -> File : súbor premazaný
+end
+
+alt touch modules/passwords.txt
+  Modul -> File : pridávam ďalšie heslá do súboru
+end
+
+loop seq 0 9999
+  alt 10#$potentionalPass % 11 == 0
+    Modul -> File : zapíš potencionálne heslá do súboru
+  end
+end
+
+Modul -> Console : hesla zapísané
+Modul -> Console : počet hesiel
+
+@enduml

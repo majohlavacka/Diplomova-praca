@@ -1,0 +1,25 @@
+@startuml
+title Sekvenčný diagram: Testovanie odozvy servera
+
+participant "ikmu.sh\n(main)" as IKMU
+participant "ping-uni.sh\n(modul)" as Ping
+participant "HTTP target\n(URL)" as Target
+participant "stdout" as Console
+
+
+IKMU -> Ping : spustenie nástroja a výber modulu
+Ping -> Target : zvolenie UKF Webmail / AiS
+alt
+  Target --> Ping : exception
+  Ping -> Console : neplatná voľba
+  Ping --> IKMU : návrat s chybou
+end
+Ping -> Target : zadať počet požiadaviek "rq"
+
+loop
+  Ping -> Console : číslo požiadaky "rq"
+  Target -> Console : kod: %{http_code}, cas: %{time_total}
+  Ping -> Target : pauza 2 sekundy
+end
+
+@enduml
