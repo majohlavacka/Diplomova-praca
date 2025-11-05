@@ -63,4 +63,5 @@ for pw in payloads:
         print(f"[FAIL] {pw} | status: {resp.status_code}")  
     
     time.sleep(random.uniform(300, 350))  # Pauza medzi 300 - 350 sekundami
-
+#else: 
+#    print(f"[NOT FOUND] Password for {username} not found")
