@@ -34,6 +34,12 @@ Knižnice:
 - `sys` — súčasť štandardnej knižnice Pythonu. V našom programe sa používa na ukončenie programu s konkrétnym návratovým kódom `sys.exit` a na vypisovanie chýb na štandardný chybový výstup `file=sys.stderr`.
 - `time` - súčasť štandardnej knižnice Pythonu. Používa sa na vloženie pauzy medzi jednotlivými pokusmi o prihlásenie `time.sleep`, čím sa znižuje riziko, že server zablokuje požiadavky kvôli príliš rýchlemu bruteforce prístupu.
 - `random` - súčasť štandardnej knižnice Pythonu. V programe sa používa spolu s `time.sleep` na generovanie náhodného čakania medzi pokusmi `random.uniform(0.8, 1.5))` aby požiadavky neprichádzali presne pravidelne a pôsobili menej bot-like.
+
+<p align="center">
+  <img src="diagrams/sequence_diagram_brute_webmail.png" alt="Obrázok 2 Sekvenčný diagram modulu Brute-force na UKF Webmail" width="700"/>
+  <br>
+  <i>Obrázok Obrázok 2 Sekvenčný diagram modulu Brute-force na UKF Webmail</i>
+</p>
   
 ## Modul: d) Brute-force na UKF AiS (python)
 Pre tento modul je potrebné zadať username, ktoré predstavuje naše osobné ID číslo a nájdedme ho na ISICu (emailova adresa pri AiS logine nefunguje). Následne sa odosiela POST požiadavka, ktorá obsahuje username a potencionálne vygenerované heslo z modulu b) Generovat hesla. V prípade úspešného prelomenia hesla sa vypíšu údaje: meno, heslo a session ID do konzole a taktiež sa pošlu aj na definovaný Discord server. Následne je možné využiť údaje ako prihlásanie priamo do účtu alebo stačí vložiť ID relácie do cookies pod premenou `JSESSIONID` a prihlásenie prebehne úspešne. 
@@ -80,9 +86,9 @@ Postup na inštaláciu a spustenie skriptu je následnový:
 - Spustíme nástroj `./ikmu.sh`
 
 <p align="center">
-  <img src="images/menu_update.PNG" alt="Obrázok 2 Menu nástroja IKMU" width="700"/>
+  <img src="images/menu_update.PNG" alt="Obrázok 3 Menu nástroja IKMU" width="700"/>
   <br>
-  <i>Obrázok 2 Menu nástroja IKMU</i>
+  <i>Obrázok 3 Menu nástroja IKMU</i>
 </p>
 
 ## Možný problém pri spustení modulov
