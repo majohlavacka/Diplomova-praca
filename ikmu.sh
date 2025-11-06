@@ -16,6 +16,7 @@ show_help() {
     echo "  f) Zistenie technologii"
     echo "  g) Zistenie IP adresy a polohy"
     echo "  i) Vyhlada zadane heslo v passwords.txt"
+    echo "  j) Zistenie technologii (python verzia)"
     echo "  x) Ukoncit nastroj"
     echo
     exit 0
@@ -36,6 +37,7 @@ menu() {
     echo "[f] Zistenie technologii"
     echo "[g] Zistenie IP adresy a polohy"
     echo "[i] Hladat heslo vo vytvorenom zozname"
+    echo "[j] Zistenie technologii (python verzia)"
     echo "[h] Napoveda"
     echo "[x] Ukoncit nastroj"
     echo
@@ -50,6 +52,7 @@ menu() {
         f) /home/kali/diplom/modules/tech-detect.sh ;;
         g) /home/kali/diplom/modules/ip-info.sh ;;
         i) /home/kali/diplom/modules/find-pass.sh ;;
+        j) python3  /home/kali/diplom/modules/tech-detect.py ;;
         h|-h|--help) show_help ;;
         x) exit 0 ;;
         *) echo "Zadali ste nespravnu moznost. Koniec programu."; exit 1 ;;
@@ -63,4 +66,3 @@ fi
 
 # zavolanie menu
 menu
-

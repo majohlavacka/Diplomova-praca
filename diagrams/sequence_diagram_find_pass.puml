@@ -1,0 +1,18 @@
+@startuml
+title Sekvenčný diagram: Prehľadávanie hesla v súbre "passwords.txt"
+
+participant "ikmu.sh\n(main)" as IKMU
+participant "find-pass.sh\n(modul)" as Modul
+participant "modules/passwords.txt\n(File)" as File
+participant "stdout" as Console
+
+
+IKMU -> Modul : spustenie nástroja a výber modulu
+Modul -> File : hľadanie hesla "f"
+alt grep -i -q "$f" modules/passwords.txt &> /dev/null
+  
+  Modul -> Console : heslo "f" nájdene
+end
+Modul -> Console : heslo sa v zozname nenašlo
+
+@enduml

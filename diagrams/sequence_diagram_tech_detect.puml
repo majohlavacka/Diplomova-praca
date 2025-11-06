@@ -1,0 +1,36 @@
+@startuml
+title Sekvenčný diagram: Testovanie odozvy servera
+
+participant "ikmu.sh\n(main)" as IKMU
+participant "tech-detect.sh\n(modul)" as Modul
+participant "detect-round.sh\n(modul)" as Modul_2
+participant "HTTP target\n(URL)" as Target
+participant "stdout" as Console
+
+
+IKMU -> Modul : spustenie nástroja a výber modulu
+Modul -> Target : zvolenie UKF Webmail / AiS
+Modul -> Console : detekujem technlógie
+Modul -> Target : získanie hlavičiek a HTML obsahu
+
+alt -z "$headers"
+  Modul -> Console : nepodarilo sa získať hlavičky
+  Modul --> IKMU : návrat s chybou
+end
+Modul -> Console : analýza technológií hlavičkiek a HTML
+Modul -> Target : detect_technologies()
+
+alt detect_technologies()
+  Modul -> Console : web server
+  Modul -> Console : backend
+  Modul -> Console : cms
+  Modul -> Console : framework
+  Modul -> Console : frontend
+  
+  alt Roundcube
+    Modul -> Modul_2 : spustenie rošírujuceho modulu na overenie Roundcube
+    Modul_2 -> Console : výpis z modulu
+  end 
+end
+
+@enduml
