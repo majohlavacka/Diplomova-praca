@@ -15,6 +15,7 @@ package "Diplomova-Praca" {
     component "gen-pass.sh" as gen_pass <<Bash>>
     component "ip-info.sh" as ip_info <<Bash>>
     component "ping-uni.sh" as ping_uni <<Bash>>
+    component "tech-detect.py" as tech_detect_python <<Python>>
   }
 
   package extended {
@@ -36,6 +37,7 @@ ikmu --> gen_pass
 ikmu --> ip_info
 ikmu --> tech_detect
 ikmu --> ping_uni
+ikmu --> tech_detect_python
 tech_detect --> detect_round
 
 brute_ais ..> logs : Vytvorí
