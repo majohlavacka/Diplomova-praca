@@ -45,7 +45,7 @@ Knižnice:
 - `requests` — externá knižnica na posielanie HTTP požiadaviek. V našom programe využívame POST požiadavku, ktorá je zodpovedná za odoslanie prihlasovacích formulárov, získanie HTTP stavového kódu a cookies z odpovede.
 - `sys` — súčasť štandardnej knižnice Pythonu. V našom programe sa používa na ukončenie programu s konkrétnym návratovým kódom `sys.exit` a na vypisovanie chýb na štandardný chybový výstup `file=sys.stderr`.
 - `time` - súčasť štandardnej knižnice Pythonu. Používa sa na vloženie pauzy medzi jednotlivými pokusmi o prihlásenie `time.sleep`, čím sa znižuje riziko, že server zablokuje požiadavky kvôli príliš rýchlemu bruteforce prístupu.
-- `random` - súčasť štandardnej knižnice Pythonu. V programe sa používa spolu s `time.sleep` na generovanie náhodného čakania medzi pokusmi `random.uniform(0.8, 1.5))` aby požiadavky neprichádzali presne pravidelne a pôsobili menej bot-like.
+- `random` - súčasť štandardnej knižnice Pythonu. V programe sa používa spolu s `time.sleep` na generovanie náhodného čakania medzi pokusmi `random.uniform(300, 350))` aby požiadavky neprichádzali presne pravidelne a pôsobili menej bot-like.
 
 <p align="center">
   <img src="diagrams/sequence_diagram_brute_webmail.png" alt="Obrázok 4 Sekvenčný diagram modulu Brute-force na UKF Webmail" width="700"/>
