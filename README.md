@@ -3,7 +3,7 @@ Tento nástroj slúži ako diplomová práca ktorá sa zameriava na penetračné
 Nástroj nesie názov `IKnowMyUni (skrátene IKMU)` a v súčasnosti obsahuje sedem modulov, pričom na vývoji ďalších sa stále pracuje
 
 # Download
-- Na stiahnutie treba použiť `wget https://github.com/majohlavacka/Diplomova-praca` a následne treba sprviť súbory .sh a .py spustitelné.
+- Na stiahnutie treba použiť `wget` alebo `git clone` `https://github.com/majohlavacka/Diplomova-praca` a následne treba spraviť súbory .sh a .py spustitelné.
 - Vykonajte príkaz `find . -type f \( -name "*.sh" -o -name "*.py" \) -exec chmod a+x {} +`, pričom bodka zabezpečuje to, aby v danom adresáry a podadresároch našiel všetky .sh, .py súbory a pridelil im príkazom `chmod a+x` spustitelné práva. 
 
 # Hlavný program 
@@ -67,7 +67,13 @@ Knižnice v tomto programe majú rovnakú funkciu ako v module `c) Brute-force n
 Tento modul zisťuje dostupné HTTP hlavičky zo zoznamu headers. Je možné do zoznamu pridať ďalšie hlavičky a kontrolovať tak bezpečnostné nastavenia servera, čo poskytuje lepší prehľad o jeho konfigurácii.
 
 ## Modul: f) Zistenie technologii 
-Tento modul odošle HEAD požiadavku na zvolenú URL a na základe analýzy HTTP hlavičiek (Server, X-Powered-By, Set-Cookie) identifikuje používané technológie (napr. WordPress, PHP) a typ webového servera (nginx alebo Apache).
+Tento modul odošle `HTTP HEAD` a `GET` požiadavky na zvolenú URL adresu (UKF Webmail alebo UKF AiS) a analyzuje odpoveď servera. Na základe hlavičiek a obsahu HTML identifikuje používané technológie, ako napríklad typ webového servera `(nginx, Apache, IIS)`, backendové prostredie `(PHP, Java, Python)` a CMS alebo frameworky `(WordPress, Laravel, React, Roundcube)`. V prípade detekcie Roundcube ponúkne spustenie rozšíreného modulu na jeho overenie.
+
+<p align="center">
+  <img src="diagrams/sequence_diagram_tech_detect.png" alt="Obrázok 6 Sekvenčný diagram modulu Tech-detect" width="700"/>
+  <br>
+  <i> Obrázok 6 Sekvenčný diagram modulu Tech-detect</i>
+</p>
 
 ## Modul: g) Zistenie IP adresy a polohy
 Tento modul umožňuje vybrať doménu UKF Webmail alebo AiS, zistí jej IP adresu a následne načíta základné informácie o tejto IP pomocou služby `ipinfo.io`.
@@ -75,7 +81,16 @@ Tento modul umožňuje vybrať doménu UKF Webmail alebo AiS, zistí jej IP adre
 ## Modul: i) Hladat heslo vo vytvorenom zozname
 Tento modul vyhľadáva zadaný reťazec prostreddníctvom nástroja `grep` a teda heslo vo vytvorenom súbore `passwords.txt` ktoré pochádza z modulu b) Generovat hesla.
 
-## Modul: j) Skenovanie otvorených portov 
+<p align="center">
+  <img src="diagrams/sequence_diagram_find_pass.png" alt="Obrázok 7 Sekvenčný diagram modulu Find-pass" width="700"/>
+  <br>
+  <i> Obrázok 7 Sekvenčný diagram modulu Find-pass</i>
+</p>
+
+## Modul: j) Zistenie technológií (Python verzia)
+Táto verzia modulu predstavuje preprogramovanú implementáciu pôvodného Bashu do jazyka Python 3. Na komunikáciu so serverom využíva knižnicu `requests`, pre spracovanie HTML odpovede knižnicu `BeautifulSoup` z balíka `bs4` a pre detekciu vzorov v texte knižnicu `re (regular expressions)`. Rovnako zisťuje technológie spomenúte v Bash verzií. 
+
+## Modul: k) Skenovanie otvorenych portov 
 Modul vo vývoji.
 
 ## Možnosť h) a možnosť x)
@@ -104,9 +119,9 @@ Postup na inštaláciu a spustenie skriptu je následnový:
 - Spustíme nástroj `./ikmu.sh`
 
 <p align="center">
-  <img src="images/menu_update.PNG" alt="Obrázok 6 Menu nástroja IKMU" width="700"/>
+  <img src="images/menu_update.PNG" alt="Obrázok 8 Menu nástroja IKMU" width="700"/>
   <br>
-  <i>Obrázok 6 Menu nástroja IKMU</i>
+  <i>Obrázok 8 Menu nástroja IKMU</i>
 </p>
 
 ## Možný problém pri spustení modulov
