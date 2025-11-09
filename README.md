@@ -67,7 +67,7 @@ Knižnice v tomto programe majú rovnakú funkciu ako v module `c) Brute-force n
 Tento modul zisťuje dostupné HTTP hlavičky zo zoznamu headers. Je možné do zoznamu pridať ďalšie hlavičky a kontrolovať tak bezpečnostné nastavenia servera, čo poskytuje lepší prehľad o jeho konfigurácii.
 
 <p align="center">
-  <img src="diagrams/sequence_diagram_brute_ais.png" alt="Obrázok 6 Sekvenčný diagram modulu Http-headers" width="700"/>
+  <img src="diagrams/sequence_diagram_http_headers.png" alt="Obrázok 6 Sekvenčný diagram modulu Http-headers" width="700"/>
   <br>
   <i>Obrázok 6 Sekvenčný diagram modulu Http-headers</i>
 </p>
