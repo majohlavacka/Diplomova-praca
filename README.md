@@ -84,13 +84,19 @@ Tento modul odošle `HTTP HEAD` a `GET` požiadavky na zvolenú URL adresu (UKF 
 ## Modul: g) Zistenie IP adresy a polohy
 Tento modul umožňuje vybrať doménu UKF Webmail alebo AiS, zistí jej IP adresu a následne načíta základné informácie o tejto IP pomocou služby `ipinfo.io`.
 
+<p align="center">
+  <img src="diagrams/sequence_diagram_ip_info.png" alt="Obrázok 8 Sekvenčný diagram modulu IP-info" width="700"/>
+  <br>
+  <i> Obrázok 8 Sekvenčný diagram modulu Http-headers </i>
+</p>
+
 ## Modul: i) Hladat heslo vo vytvorenom zozname
 Tento modul vyhľadáva zadaný reťazec prostreddníctvom nástroja `grep` a teda heslo vo vytvorenom súbore `passwords.txt` ktoré pochádza z modulu b) Generovat hesla.
 
 <p align="center">
-  <img src="diagrams/sequence_diagram_find_pass.png" alt="Obrázok 8 Sekvenčný diagram modulu Find-pass" width="700"/>
+  <img src="diagrams/sequence_diagram_find_pass.png" alt="Obrázok 9 Sekvenčný diagram modulu Find-pass" width="700"/>
   <br>
-  <i> Obrázok 8 Sekvenčný diagram modulu Find-pass</i>
+  <i> Obrázok 9 Sekvenčný diagram modulu Find-pass</i>
 </p>
 
 ## Modul: j) Zistenie technológií (Python verzia)
@@ -112,6 +118,12 @@ Rozšírenie pre určité klasické moduly.
 ## Extended modul: Zistenie webového klienta v rámci modulu f)
 Modul analyzuje webovú aplikáciu a na základe kombinácie cookies, HTML obsahu, známych alebo dynamicky zistených endpointov (?_task=…) a špecifických HTTP hlavičiek identifikuje a potvrdzuje prítomnosť webmail klienta `Roundcube`. 
 
+<p align="center">
+  <img src="diagrams/sequence_diagram_extended_roundcube_detect.png" alt="Obrázok 10 Rozšírený moodul na detekciu Roundcube" width="700"/>
+  <br>
+  <i> Obrázok 10 Rozšírený moodul na detekciu Roundcube </i>
+</p>
+
 # Použitie nástroja v zariadení Raspberry Pi 
 Nástroj je možné využiť aj na menšiom zariadení ako je RPi. 
 Postup na inštaláciu a spustenie skriptu je následnový: 
@@ -125,9 +137,9 @@ Postup na inštaláciu a spustenie skriptu je následnový:
 - Spustíme nástroj `./ikmu.sh`
 
 <p align="center">
-  <img src="images/menu_update.PNG" alt="Obrázok 9 Menu nástroja IKMU" width="700"/>
+  <img src="images/menu_update.PNG" alt="Obrázok 11 Menu nástroja IKMU" width="700"/>
   <br>
-  <i>Obrázok 9 Menu nástroja IKMU</i>
+  <i>Obrázok 11 Menu nástroja IKMU</i>
 </p>
 
 ## Možný problém pri spustení modulov
