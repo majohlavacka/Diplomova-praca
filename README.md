@@ -67,16 +67,16 @@ Knižnice v tomto programe majú rovnakú funkciu ako v module `c) Brute-force n
 Tento modul zisťuje dostupné HTTP hlavičky zo zoznamu headers. Je možné do zoznamu pridať ďalšie hlavičky a kontrolovať tak bezpečnostné nastavenia servera, čo poskytuje lepší prehľad o jeho konfigurácii.
 
 <p align="center">
-  <img src="diagrams/sequence_diagram_brute_ais.png" alt="Obrázok 6 Sekvenčný diagram modulu Brute-force na UKF AiS" width="700"/>
+  <img src="diagrams/sequence_diagram_brute_ais.png" alt="Obrázok 6 Sekvenčný diagram modulu Http-headers" width="700"/>
   <br>
-  <i>Obrázok 6 Sekvenčný diagram modulu Brute-force na UKF AiS</i>
+  <i>Obrázok 6 Sekvenčný diagram modulu Http-headers</i>
 </p>
 
 ## Modul: f) Zistenie technologii 
 Tento modul odošle `HTTP HEAD` a `GET` požiadavky na zvolenú URL adresu (UKF Webmail alebo UKF AiS) a analyzuje odpoveď servera. Na základe hlavičiek a obsahu HTML identifikuje používané technológie, ako napríklad typ webového servera `(nginx, Apache, IIS)`, backendové prostredie `(PHP, Java, Python)` a CMS alebo frameworky `(WordPress, Laravel, React, Roundcube)`. V prípade detekcie Roundcube ponúkne spustenie rozšíreného modulu na jeho overenie.
 
 <p align="center">
-  <img src="diagrams/sequence_diagram_http_headers.png" alt="Obrázok 7 Sekvenčný diagram modulu Http-headers" width="700"/>
+  <img src="diagrams/sequence_diagram_tech_detect.png" alt="Obrázok 7 Sekvenčný diagram modulu Tech-detect" width="700"/>
   <br>
   <i> Obrázok 7 Sekvenčný diagram modulu Http-headers </i>
 </p>
