@@ -66,13 +66,19 @@ Knižnice v tomto programe majú rovnakú funkciu ako v module `c) Brute-force n
 ## Modul: e) Zistenie HTTP hlaviciek
 Tento modul zisťuje dostupné HTTP hlavičky zo zoznamu headers. Je možné do zoznamu pridať ďalšie hlavičky a kontrolovať tak bezpečnostné nastavenia servera, čo poskytuje lepší prehľad o jeho konfigurácii.
 
+<p align="center">
+  <img src="diagrams/sequence_diagram_brute_ais.png" alt="Obrázok 6 Sekvenčný diagram modulu Brute-force na UKF AiS" width="700"/>
+  <br>
+  <i>Obrázok 6 Sekvenčný diagram modulu Brute-force na UKF AiS</i>
+</p>
+
 ## Modul: f) Zistenie technologii 
 Tento modul odošle `HTTP HEAD` a `GET` požiadavky na zvolenú URL adresu (UKF Webmail alebo UKF AiS) a analyzuje odpoveď servera. Na základe hlavičiek a obsahu HTML identifikuje používané technológie, ako napríklad typ webového servera `(nginx, Apache, IIS)`, backendové prostredie `(PHP, Java, Python)` a CMS alebo frameworky `(WordPress, Laravel, React, Roundcube)`. V prípade detekcie Roundcube ponúkne spustenie rozšíreného modulu na jeho overenie.
 
 <p align="center">
-  <img src="diagrams/sequence_diagram_tech_detect.png" alt="Obrázok 6 Sekvenčný diagram modulu Tech-detect" width="700"/>
+  <img src="diagrams/sequence_diagram_http_headers.png" alt="Obrázok 7 Sekvenčný diagram modulu Http-headers" width="700"/>
   <br>
-  <i> Obrázok 6 Sekvenčný diagram modulu Tech-detect</i>
+  <i> Obrázok 7 Sekvenčný diagram modulu Http-headers </i>
 </p>
 
 ## Modul: g) Zistenie IP adresy a polohy
@@ -82,9 +88,9 @@ Tento modul umožňuje vybrať doménu UKF Webmail alebo AiS, zistí jej IP adre
 Tento modul vyhľadáva zadaný reťazec prostreddníctvom nástroja `grep` a teda heslo vo vytvorenom súbore `passwords.txt` ktoré pochádza z modulu b) Generovat hesla.
 
 <p align="center">
-  <img src="diagrams/sequence_diagram_find_pass.png" alt="Obrázok 7 Sekvenčný diagram modulu Find-pass" width="700"/>
+  <img src="diagrams/sequence_diagram_find_pass.png" alt="Obrázok 8 Sekvenčný diagram modulu Find-pass" width="700"/>
   <br>
-  <i> Obrázok 7 Sekvenčný diagram modulu Find-pass</i>
+  <i> Obrázok 8 Sekvenčný diagram modulu Find-pass</i>
 </p>
 
 ## Modul: j) Zistenie technológií (Python verzia)
@@ -119,9 +125,9 @@ Postup na inštaláciu a spustenie skriptu je následnový:
 - Spustíme nástroj `./ikmu.sh`
 
 <p align="center">
-  <img src="images/menu_update.PNG" alt="Obrázok 8 Menu nástroja IKMU" width="700"/>
+  <img src="images/menu_update.PNG" alt="Obrázok 9 Menu nástroja IKMU" width="700"/>
   <br>
-  <i>Obrázok 8 Menu nástroja IKMU</i>
+  <i>Obrázok 9 Menu nástroja IKMU</i>
 </p>
 
 ## Možný problém pri spustení modulov
