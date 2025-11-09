@@ -1,5 +1,5 @@
 @startuml
-title Sekvenčný diagram: Testovanie odozvy servera
+title Sekvenčný diagram: Detekovanie technlógií
 
 participant "ikmu.sh\n(main)" as IKMU
 participant "tech-detect.sh\n(modul)" as Modul
@@ -14,6 +14,7 @@ Modul -> Console : detekujem technlógie
 Modul -> Target : získanie hlavičiek a HTML obsahu
 
 alt -z "$headers"
+  Target --> Modul : exception
   Modul -> Console : nepodarilo sa získať hlavičky
   Modul --> IKMU : návrat s chybou
 end

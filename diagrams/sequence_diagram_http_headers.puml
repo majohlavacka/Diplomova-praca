@@ -1,0 +1,31 @@
+@startuml
+title Sekvenčný diagram: Kontrola hlavičiek
+
+participant "ikmu.sh\n(main)" as IKMU
+participant "http-headers.sh\n(modul)" as Modul
+participant "HTTP target\n(URL)" as Target
+participant "stdout" as Console
+
+
+IKMU -> Modul : spustenie nástroja a výber modulu
+Modul -> Target : zvolenie UKF Webmail / AiS
+
+alt 
+  Target --> Modul : exception
+  Modul -> Console : nesprávna voľba
+  Modul --> IKMU : návrat s chybou
+end
+
+Modul -> Target : kontrola hlavičiek
+
+
+loop header in "${headers[@]}"
+  alt echo "$response" | grep -i "$header" > /dev/null
+    Modul -> Console : výpis nájdených hlavičiek podľa zoznamu
+  end
+end
+
+Modul -> Console : hlavičky sa nenašli
+
+
+@enduml

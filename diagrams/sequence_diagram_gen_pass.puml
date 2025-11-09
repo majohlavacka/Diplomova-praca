@@ -1,5 +1,5 @@
 @startuml
-title Sekvenčný diagram: Testovanie odozvy servera
+title Sekvenčný diagram: Generovanie číslených hesiel 
 
 participant "ikmu.sh\n(main)" as IKMU
 participant "gen-pass.sh\n(modul)" as Modul
