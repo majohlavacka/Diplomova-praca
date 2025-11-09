@@ -1,0 +1,40 @@
+@startuml
+title Sekvenčný diagram: Detekcia Roundcube technológie
+
+participant "tech-detect.sh\n(modul)" as Modul
+participant "tech-detect-roundcube.sh\n(modul)" as Modul2
+participant "HTTP target\n(URL)" as Target
+participant "stdout" as Console
+
+Modul -> Modul2 : volanie rozšíreného modulu pre UKF Webmail
+Modul2 -> Target : získanie a kontrola cookie
+
+alt echo "$cookies" | grep -iq "roundcube_sessid"
+  Modul2 -> Console : cookie naznačuje Roundcube
+end
+
+Modul2 -> Target : získaj HTML a extrahuj endpointy (?_task=)
+
+alt -z "$endpoints" 
+  Modul2 -> Target : skúsi základnú URL
+end
+
+loop endpoint in $endpoints
+  alt echo "$resp" | grep -Eiq "rcmail|roundcube_logo|rcube_webmail|rcmail.set_env"
+    Modul2 -> Console : Roundcube rozpoznaný na nájdenom endpointe
+  end
+end
+
+Modul2 -> Target : získanie hlavičiek
+
+alt echo "$headers" | grep -Eiq "X-Roundcube-Request|X-Roundcube-Token|X-Roundcube-Session|X-Roundcube-Version|X-Powered-By: Roundcube"
+  Modul2 -> Console : nájdene hlavičky
+end
+
+alt "$found" -eq 0
+  Modul2 -> Console : Roundcube nepotvrdený
+end
+
+Modul2 -> Console : Roundcube potvrdený
+
+@enduml

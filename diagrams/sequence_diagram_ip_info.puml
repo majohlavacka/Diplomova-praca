@@ -1,0 +1,22 @@
+@startuml
+title Sekvenčný diagram: IP servera a dodatočné údaje
+
+participant "ikmu.sh\n(main)" as IKMU
+participant "ip-info.sh\n(modul)" as Modul
+participant "HTTP target\n(URL)" as Target
+participant "stdout" as Console
+
+IKMU -> Modul : spustenie nástroja a výber modulu
+Modul -> Target : zvolenie UKF Webmail / AiS
+
+alt 
+  Target --> Modul : exception
+  Modul -> Console : nesprávna voľba
+  Modul --> IKMU : návrat s chybou
+end
+
+Modul -> Console : Zistenie IP
+Modul -> Console : Zistenie dodatočných informácií na základe IP 
+
+
+@enduml
