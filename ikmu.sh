@@ -27,6 +27,13 @@ menu() {
     echo "#           IKnowMyUni            #"
     echo "###################################"
     echo
+    echo "IKMU - Web Application Penetration Testing Tool"
+    echo "Author: Marian Hlavacka"
+    echo "GitHub: https://github.com/majohlavacka/Diplomova-praca"
+    echo
+    echo "X modules currently"
+    echo "X extended modules currently"
+    echo
     echo "[*] Dostupne moznosti:"
     echo
     echo "[a] Testovanie odozvy a Rate-limitingu"
