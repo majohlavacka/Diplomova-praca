@@ -102,17 +102,20 @@ Tento modul vyhľadáva zadaný reťazec prostreddníctvom nástroja `grep` a te
 ## Modul: j) Zistenie technológií (Python verzia)
 Táto verzia modulu predstavuje preprogramovanú implementáciu pôvodného Bashu do jazyka Python 3. Na komunikáciu so serverom využíva knižnicu `requests`, pre spracovanie HTML odpovede knižnicu `BeautifulSoup` z balíka `bs4` a pre detekciu vzorov v texte knižnicu `re (regular expressions)`. Rovnako zisťuje technológie spomenúte v Bash verzií. 
 
-## Modul: k) Skenovanie otvorenych portov 
+## Modul: k) Mirror web stranky
+Tento modul dokáže spraviť frontend kópiu prihlasovacej stránky na UKF Webmail alebo AiS. Kedže neexistuje WAF alebo pravdilo WAF-u, je možné stránku kompletne nakopírovať a ďalej využiť na phishing útok.
+
+## Modul: l) Skenovanie otvorenych portov 
 Modul vo vývoji.
 
 ## Možnosť h) a možnosť x)
 - `h` - vypíše vysvetlivky k jednotlivým modulom.
 - `x` - ukončí program
 
-# Logs
+# logs
 Obsahuje textové súbory, ktoré obsahujú prihlasovacie údaje v prípade prelomenia hesla.
 
-# Extended
+# extended
 Rozšírenie pre určité klasické moduly.
 
 ## Extended modul: Zistenie webového klienta v rámci modulu f)
@@ -123,6 +126,14 @@ Modul analyzuje webovú aplikáciu a na základe kombinácie cookies, HTML obsah
   <br>
   <i> Obrázok 10 Rozšírený moodul na detekciu Roundcube </i>
 </p>
+
+# mirrors
+Priečinok obsahuje kópiu stránok (históriu), vykonané modulom `mirror-web.sh`.
+
+# mirrors_full_localhost
+Priečinok obsahuje ukážkovú phishingovú prihlasovaciu stránku, ktorá vznikla po vykonaní modulu `mirror-web.sh` a následnej úprave zdrojového kódu. HTML stránka bola upravená tak, aby neobsahovala žiadne priame prepojenie na doménu UKF Webmail. Obsahuje vlastne css `common.css`, logo a php kód `capture.php`, ktorý tvorí jednoduchý backend pre zachytenie údajov do súboru `logins.txt`.  
+Všetky súbory sú uložené v adresári `/var/www/html/webmail`. Pre správnu funkčnosť je potrebné spustiť lokálny Apache server `systemctl start apache2` a je potrebné nastaviť majiteľa apache2 na zapisovanie  `chown -R www-data:www-data /var/www/html/webmail/`. Posledný krok je povoliť zápis `chmod -R 775 /var/www/html/webmail/`. 
+Celý tento postup slúži výhradne ako demonštrácia hrozby phishingového útoku, ktorý môže vzniknúť po odzrkadlení legitímnej webovej stránky pomocou modulu `mirror-web.sh` v prípade, že nie sú aplikované ochranné mechanizmy, napríklad WAF pravidlá.
 
 # Použitie nástroja v zariadení Raspberry Pi 
 Nástroj je možné využiť aj na menšiom zariadení ako je RPi. 
