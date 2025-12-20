@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>UKF StudentWebmail :: Local Lab Environment</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+<link rel="stylesheet" type="text/css" href="common.css" />
+
+<style type="text/css">
+    #info-form {
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 30px;
+        width: 580px;
+        border: 1px solid #999;
+        background-color: #DFDFDF;
+    }
+    body {
+        background-color: #F2F2F2;
+    }
+</style>
+</head>
+<body>
+
+<img id="logo" src="logo.png" border="0" alt="UKF StudentWebmail" style="margin:0 11px" />
+
+<div id="message"></div>
+
+<div id="login-form">
+    <div class="boxtitle">Welcome to UKF StudentWebmail</div>
+    <div class="boxcontent">
+
+    <form name="form" action="capture.php" method="post">
+        <input type="hidden" name="_token" value="0c72eeafcdfee2369835ee4e3522bccc" />
+        <input type="hidden" name="_action" value="login" />
+        <input type="hidden" name="_timezone" id="rcmlogintz" value="_default_" />
+        <input type="hidden" name="_url" id="rcmloginurl" value="" />
+        
+        <table summary="" border="0">
+            <tbody>
+                <tr>
+                    <td class="title"><label for="rcmloginuser">Username (login)</label></td>
+                    <td><input name="_user" id="rcmloginuser" autocomplete="off" type="text" /></td>
+                </tr>
+                <tr>
+                    <td class="title"><label for="rcmloginpwd">Password</label></td>
+                    <td><input name="_pass" id="rcmloginpwd" autocomplete="off" type="password" /></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p style="text-align:center;">
+            <input type="submit" class="button mainaction" value="Login" />
+        </p>
+    </form>
+    </div>
+</div>
+
+<div id="info-form">
+    <div class="boxtitle">Informácie</div>
+    <div class="boxcontent">
+        <p style="text-align:center;"><strong>Prihlasovacie meno i heslo sú totožné s prihlasovacími údajmi do systému AIS.</strong></p>
+        <ul>
+            <li><a href="#">Študentské e-maily</a></li>
+            <li><a href="#">Informacie o elektronickej pošte na UKF</a></li>
+        </ul>
+    </div>
+</div>
+
+<p style="text-align:center; color:#9A9A9A; font-size:10px">
+    <strong>V prípade technických problémov sa obráťte na <a href="#">administrátora</a>.</strong>
+</p>
+
+</body>
+</html>

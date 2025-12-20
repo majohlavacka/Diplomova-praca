@@ -17,6 +17,7 @@ show_help() {
     echo "  g) Zistenie IP adresy a polohy"
     echo "  i) Vyhlada zadane heslo v passwords.txt"
     echo "  j) Zistenie technologii (python verzia)"
+    echo "  k) Mirrorovanie webovej stranky (python verzia)"
     echo "  x) Ukoncit nastroj"
     echo
     exit 0
@@ -45,6 +46,7 @@ menu() {
     echo "[g] Zistenie IP adresy a polohy"
     echo "[i] Hladat heslo vo vytvorenom zozname"
     echo "[j] Zistenie technologii (python verzia)"
+    echo "[k] Mirror web stranky"
     echo "[h] Napoveda"
     echo "[x] Ukoncit nastroj"
     echo
@@ -60,6 +62,7 @@ menu() {
         g) /home/kali/diplom/modules/ip-info.sh ;;
         i) /home/kali/diplom/modules/find-pass.sh ;;
         j) python3  /home/kali/diplom/modules/tech-detect.py ;;
+        k) /home/kali/diplom/modules/mirror-web.sh ;;
         h|-h|--help) show_help ;;
         x) exit 0 ;;
         *) echo "Zadali ste nespravnu moznost. Koniec programu."; exit 1 ;;
