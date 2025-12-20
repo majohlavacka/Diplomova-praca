@@ -133,6 +133,20 @@ Priečinok obsahuje kópiu stránok (históriu), vykonané modulom `mirror-web.s
 # mirrors_full_localhost
 Priečinok obsahuje ukážkovú phishingovú prihlasovaciu stránku, ktorá vznikla po vykonaní modulu `mirror-web.sh` a následnej úprave zdrojového kódu. HTML stránka bola upravená tak, aby neobsahovala žiadne priame prepojenie na doménu UKF Webmail. Obsahuje vlastne css `common.css`, logo a php kód `capture.php`, ktorý tvorí jednoduchý backend pre zachytenie údajov do súboru `logins.txt`.  
 Všetky súbory sú uložené v adresári `/var/www/html/webmail`. Pre správnu funkčnosť je potrebné spustiť lokálny Apache server `systemctl start apache2` a je potrebné nastaviť majiteľa apache2 na zapisovanie  `chown -R www-data:www-data /var/www/html/webmail/`. Posledný krok je povoliť zápis `chmod -R 775 /var/www/html/webmail/`. 
+
+<p align="center">
+  <img src="images/webmail_phishing_login.PNG" alt="Obrázok 11 Phishing stránka UKF Webmail pre login na lokálnom serveri" width="700"/>
+  <br>
+  <i>Obrázok 11 Phishing stránka UKF Webmail pre login na lokálnom serveri</i>
+</p>
+
+<p align="center">
+  <img src="images/webmail_phishing_text_file.PNG" alt="Obrázok 12 Zachytené údaje v textovom súbore" width="700"/>
+  <br>
+  <i>Obrázok 12 Zachytené údaje v textovom súbore</i>
+</p>
+
+
 Celý tento postup slúži výhradne ako demonštrácia hrozby phishingového útoku, ktorý môže vzniknúť po odzrkadlení legitímnej webovej stránky pomocou modulu `mirror-web.sh` v prípade, že nie sú aplikované ochranné mechanizmy, napríklad WAF pravidlá.
 
 # Použitie nástroja v zariadení Raspberry Pi 
@@ -148,9 +162,9 @@ Postup na inštaláciu a spustenie skriptu je následnový:
 - Spustíme nástroj `./ikmu.sh`
 
 <p align="center">
-  <img src="images/menu_update.PNG" alt="Obrázok 11 Menu nástroja IKMU" width="700"/>
+  <img src="images/menu_update.PNG" alt="Obrázok 13 Menu nástroja IKMU" width="700"/>
   <br>
-  <i>Obrázok 11 Menu nástroja IKMU</i>
+  <i>Obrázok 13 Menu nástroja IKMU</i>
 </p>
 
 ## Možný problém pri spustení modulov
