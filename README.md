@@ -105,6 +105,12 @@ Táto verzia modulu predstavuje preprogramovanú implementáciu pôvodného Bash
 ## Modul: k) Mirror web stranky
 Tento modul dokáže spraviť frontend kópiu prihlasovacej stránky na UKF Webmail alebo AiS. Kedže neexistuje WAF alebo pravdilo WAF-u, je možné stránku kompletne nakopírovať a ďalej využiť na phishing útok.
 
+<p align="center">
+  <img src="diagrams/sequence_diagram_mirror_web.png" alt="Obrázok 10 Sekvenčný diagram modulu Mirror-web" width="700"/>
+  <br>
+  <i> Obrázok 10 Sekvenčný diagram modulu Mirror-web</i>
+</p>
+
 ## Modul: l) Skenovanie otvorenych portov 
 Modul vo vývoji.
 
@@ -122,9 +128,9 @@ Rozšírenie pre určité klasické moduly.
 Modul analyzuje webovú aplikáciu a na základe kombinácie cookies, HTML obsahu, známych alebo dynamicky zistených endpointov (?_task=…) a špecifických HTTP hlavičiek identifikuje a potvrdzuje prítomnosť webmail klienta `Roundcube`. 
 
 <p align="center">
-  <img src="diagrams/sequence_diagram_extended_roundcube_detect.png" alt="Obrázok 10 Rozšírený moodul na detekciu Roundcube" width="700"/>
+  <img src="diagrams/sequence_diagram_extended_roundcube_detect.png" alt="Obrázok 11 Rozšírený moodul na detekciu Roundcube" width="700"/>
   <br>
-  <i> Obrázok 10 Rozšírený moodul na detekciu Roundcube </i>
+  <i> Obrázok 11 Rozšírený moodul na detekciu Roundcube </i>
 </p>
 
 # mirrors
@@ -135,15 +141,15 @@ Priečinok obsahuje ukážkovú phishingovú prihlasovaciu stránku, ktorá vzni
 Všetky súbory sú uložené v adresári `/var/www/html/webmail`. Pre správnu funkčnosť je potrebné spustiť lokálny Apache server `systemctl start apache2` a je potrebné nastaviť majiteľa apache2 na zapisovanie  `chown -R www-data:www-data /var/www/html/webmail/`. Posledný krok je povoliť zápis `chmod -R 775 /var/www/html/webmail/`. 
 
 <p align="center">
-  <img src="images/webmail_phishing_login.PNG" alt="Obrázok 11 Phishing stránka UKF Webmail pre login na lokálnom serveri" width="700"/>
+  <img src="images/webmail_phishing_login.PNG" alt="Obrázok 12 Phishing stránka UKF Webmail pre login na lokálnom serveri" width="700"/>
   <br>
-  <i>Obrázok 11 Phishing stránka UKF Webmail pre login na lokálnom serveri</i>
+  <i>Obrázok 12 Phishing stránka UKF Webmail pre login na lokálnom serveri</i>
 </p>
 
 <p align="center">
-  <img src="images/webmail_phishing_text_file.PNG" alt="Obrázok 12 Zachytené údaje v textovom súbore" width="700"/>
+  <img src="images/webmail_phishing_text_file.PNG" alt="Obrázok 13 Zachytené údaje v textovom súbore" width="700"/>
   <br>
-  <i>Obrázok 12 Zachytené údaje v textovom súbore</i>
+  <i>Obrázok 13 Zachytené údaje v textovom súbore</i>
 </p>
 
 
@@ -162,9 +168,9 @@ Postup na inštaláciu a spustenie skriptu je následnový:
 - Spustíme nástroj `./ikmu.sh`
 
 <p align="center">
-  <img src="images/menu_update.PNG" alt="Obrázok 13 Menu nástroja IKMU" width="700"/>
+  <img src="images/menu_update.PNG" alt="Obrázok 14 Menu nástroja IKMU" width="700"/>
   <br>
-  <i>Obrázok 13 Menu nástroja IKMU</i>
+  <i>Obrázok 14 Menu nástroja IKMU</i>
 </p>
 
 ## Možný problém pri spustení modulov
