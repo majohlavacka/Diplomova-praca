@@ -1,0 +1,22 @@
+@startuml
+title Sekvenčný diagram: Mirror zdrojového kódu web stránky
+
+participant "ikmu.sh\n(main)" as IKMU
+participant "mirror-web.sh\n(modul)" as Modul
+participant "HTTP target\n(URL)" as Target
+participant "stdout" as Console
+
+
+IKMU -> Modul : spustenie nástroja a výber modulu
+Modul -> Target : zvolenie UKF Webmail / AiS
+Modul -> Console : mirrorujem: $url
+Modul -> Console : ukladam do: mirrors/
+
+
+alt $? -eq 0 
+  Modul -> Console : mirror hotovy
+  Modul -> Console : priečinok s obsahom
+end
+
+Modul -> Console : chyba pri mirrorovani
+@enduml
