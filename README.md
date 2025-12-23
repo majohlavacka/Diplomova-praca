@@ -64,7 +64,7 @@ Knižnice v tomto programe majú rovnakú funkciu ako v module `c) Brute-force n
 </p>
 
 ## Modul: e) Zistenie HTTP hlaviciek
-Tento modul zisťuje dostupné HTTP hlavičky zo zoznamu headers. Je možné do zoznamu pridať ďalšie hlavičky a kontrolovať tak bezpečnostné nastavenia servera, čo poskytuje lepší prehľad o jeho konfigurácii.
+Tento modul zisťuje dostupné HTTP hlavičky zo zoznamu `resources/headers.txt`. Do zoznamu je možné pridať ďalšie hlavičky a kontrolovať tak bezpečnostné nastavenia servera, čo poskytuje lepší prehľad o jeho konfigurácii. V prípade nájdenia hlavičky modul zobrazí presnú hodnotu a výstupy sa ukladajú do logovacieho súboru v priečinku `logs/`.
 
 <p align="center">
   <img src="diagrams/sequence_diagram_http_headers.png" alt="Obrázok 6 Sekvenčný diagram modulu Http-headers" width="700"/>
