@@ -119,10 +119,14 @@ Modul vo vývoji.
 - `x` - ukončí program
 
 # logs
-Obsahuje textové súbory, ktoré obsahujú prihlasovacie údaje v prípade prelomenia hesla.
+Textové súbory, ktoré obsahujú prihlasovacie údaje v prípade prelomenia hesla, logy zo skenovania HTTP hlavičiek. 
 
 # extended
 Rozšírenie pre určité klasické moduly.
+
+# resources
+Externé súbory, ktoré skripty potrebujú na svoju činnosť. Skripty načítavajú tieto súbory dynamicky, takže ich je môžné ľahko upravovať alebo rozširovať bez zmeny samotného kódu. 
+- `headers.txt` - využíva sa v rámci modulu `http-headers.sh` a obsahuje zoznam hlavičiek podľa OWASP. 
 
 ## Extended modul: Zistenie webového klienta v rámci modulu f)
 Modul analyzuje webovú aplikáciu a na základe kombinácie cookies, HTML obsahu, známych alebo dynamicky zistených endpointov (?_task=…) a špecifických HTTP hlavičiek identifikuje a potvrdzuje prítomnosť webmail klienta `Roundcube`. 
