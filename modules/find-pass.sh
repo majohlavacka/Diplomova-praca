@@ -1,11 +1,21 @@
 #!/usr/bin/env bash
 
-read -p "[*] Hladane heslo v passwords.txt ? Heslo: " f
+read -rp "[*] Hladane heslo v passwords.txt ? Heslo: " search
 echo
 
-if grep -i -q "$f" modules/passwords.txt &> /dev/null; then
-  found=$(grep -i -n "$f" modules/passwords.txt)
-  echo "[+] Uspech, heslo najdene (riadok:heslo): $found"
+PASS_FILE="modules/passwords.txt"
+
+# kontrola existencie suboru
+if [[ ! -f "$PASS_FILE" ]]; then
+  echo "[-] Subor passwords.txt neexistuje"
+  exit 1
+fi
+
+# presne hladanie celeho riadku
+if grep -Fxqi -- "$search" "$PASS_FILE"; then
+  found=$(grep -Fxni -- "$search" "$PASS_FILE")
+  echo "[+] Uspech, heslo najdene (riadok:heslo):"
+  echo "$found"
 else
   echo "[-] Heslo sa v zozname nenachadza"
 fi

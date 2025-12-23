@@ -1,34 +1,37 @@
 #!/usr/bin/env bash
 
-echo "[*] Zadaj prefix hesla (presne 6 cislic):"
-read -p "Prefix: " prefix
+PASS_FILE="modules/passwords.txt"
 
-# overenie 6 cislic pomocou regexu, =~ overuje match, ^ je zaciatok riadka a $ je koniec riadka, medzi nim overuje cisla od 0-9 a 6 cislic
-if [[ ! "$prefix" =~ ^[0-9]{6}$ ]]; then
-  echo "[!] Chyba: prefix musi obsahovat presne 6 cislic (0-9)."
-  exit 1
+# funkcia na generovanie hesiel
+generate_passwords() {
+  local prefix="$1"
+  local prefix_num=$((10#$prefix)) # 10# zabezpeci desiatkovu interpretaciu 
+
+  { # blok zabezpeci rychle, naraz zapisanie hesiel do suboru - rychly sposob
+    for ((i=0; i<10000; i++)); do
+      local password=$(( prefix_num * 10000 + i )) # vytvori 10-ciferne cislo spojenim prefixu a suffixu
+      (( password % 11 == 0 )) && printf "%010d\n" "$password"
+    done
+  } >> "$PASS_FILE"
+}
+
+read -rp "[*] Zadaj prefix hesla (presne 6 cislic): " prefix
+echo
+
+# validacia vstupu
+[[ "$prefix" =~ ^[0-9]{6}$ ]] || { echo "[!] Chyba: prefix musi mat presne 6 cislic"; exit 1; }
+
+# kontrola suboru
+if [[ -f "$PASS_FILE" ]]; then
+  read -rp "[?] Subor passwords.txt existuje. Chces ho premazat? (y/n): " choice
+  [[ "$choice" =~ ^[yY]$ ]] && > "$PASS_FILE"
+else
+  touch "$PASS_FILE"
 fi
 
-if [[ -e modules/passwords.txt ]]; then
-  echo "[?] Chcete premazat existujuce hesla y/n ?"
-  read wannadel
-  if [[ "$wannadel" = "y" ]]; then
-    > modules/passwords.txt
-    echo "[+] Subor premazany"
-  else
-    touch modules/passwords.txt
-    echo "[+] Pridavam dalsie hesla do suboru"
-  fi
-fi
+# volanie funkcie
+generate_passwords "$prefix"
 
-for i in $(seq 0 9999); do
-  potentionalPass="${prefix}${i}"
-  # 10# zabezpeci aby cisla boli desiatkove, inak su osmickove
-  if (( 10#$potentionalPass % 11 == 0 )); then
-    echo "$potentionalPass" >> modules/passwords.txt
-  fi
-done
-
-pocetHesiel=$(wc -l < modules/passwords.txt)
-echo "[+] Hesla uspesne zapisane"
-echo "[+] Pocet hesiel: $pocetHesiel"
+echo
+echo "[+] Generovanie dokoncene"
+echo "[+] Pocet hesiel v subore: $(wc -l < "$PASS_FILE")"

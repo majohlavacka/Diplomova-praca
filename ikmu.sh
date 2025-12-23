@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# dynamicka cesta k nastroju
+BASE_DIR="$(cd "$(dirname "$0")" && pwd)"
+
 clear
 
 show_help() {
@@ -17,13 +20,13 @@ show_help() {
     echo "  g) Zistenie IP adresy a polohy"
     echo "  i) Vyhlada zadane heslo v passwords.txt"
     echo "  j) Zistenie technologii (python verzia)"
-    echo "  k) Mirrorovanie webovej stranky (python verzia)"
+    echo "  k) Mirrorovanie webovej stranky"
     echo "  x) Ukoncit nastroj"
     echo
-    exit 0
 }
 
 menu() {
+    clear
     echo "###################################"
     echo "#           IKnowMyUni            #"
     echo "###################################"
@@ -32,8 +35,8 @@ menu() {
     echo "Author: Marian Hlavacka"
     echo "GitHub: https://github.com/majohlavacka/Diplomova-praca"
     echo
-    echo "X modules currently"
-    echo "X extended modules currently"
+    echo "10 modules currently"
+    echo "1 extended modules currently"
     echo
     echo "[*] Dostupne moznosti:"
     echo
@@ -53,26 +56,35 @@ menu() {
     read -p "[*] Moznost: " choice
 
     case "$choice" in
-        a) /home/kali/diplom/modules/ping-uni.sh ;;
-        b) /home/kali/diplom/modules/gen-pass.sh ;;
-        c) python3 /home/kali/diplom/modules/brute-webmail.py ;;
-        d) python3 /home/kali/diplom/modules/brute-ais.py ;;
-        e) /home/kali/diplom/modules/http-headers.sh ;;
-        f) /home/kali/diplom/modules/tech-detect.sh ;;
-        g) /home/kali/diplom/modules/ip-info.sh ;;
-        i) /home/kali/diplom/modules/find-pass.sh ;;
-        j) python3  /home/kali/diplom/modules/tech-detect.py ;;
-        k) /home/kali/diplom/modules/mirror-web.sh ;;
+        a) bash "$BASE_DIR/modules/ping-uni.sh" ;;
+        b) bash "$BASE_DIR/modules/gen-pass.sh" ;;
+        c) python3 "$BASE_DIR/modules/brute-webmail.py" ;;
+        d) python3 "$BASE_DIR/modules/brute-ais.py" ;;
+        e) bash "$BASE_DIR/modules/http-headers.sh" ;;
+        f) bash "$BASE_DIR/modules/tech-detect.sh" ;;
+        g) bash "$BASE_DIR/modules/ip-info.sh" ;;
+        i) bash "$BASE_DIR/modules/find-pass.sh" ;;
+        j) python3 "$BASE_DIR/modules/tech-detect.py" ;;
+        k) bash "$BASE_DIR/modules/mirror-web.sh" ;;
         h|-h|--help) show_help ;;
         x) exit 0 ;;
-        *) echo "Zadali ste nespravnu moznost. Koniec programu."; exit 1 ;;
+        *) 
+            echo "Zadali ste nespravnu moznost."
+            sleep 1
+            ;;
     esac
+
+    echo
+    read -p "Stlac ENTER pre navrat do menu..."
 }
 
-# support ./ikmu -h/--help
+# podpora ./ikmu -h / --help
 if [[ "$1" == "-h" || "$1" == "--help" ]]; then
     show_help
+    exit 0
 fi
 
-# zavolanie menu
-menu
+# hlavny loop menu
+while true; do
+    menu
+done
