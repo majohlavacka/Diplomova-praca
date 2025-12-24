@@ -1,25 +1,39 @@
 #!/usr/bin/env bash
 
+# funkcia na testovanie odozvy
+test_response() {
+    local url="$1"
+    local requests="$2"
+
+    echo
+    echo "[*] Testujem odozvu pre: $url"
+    echo "--------------------------------"
+
+    for ((i=1; i<=requests; i++)); do
+        echo "[?] $i. poziadavka..."
+
+        curl -o /dev/null -s \
+             -w "    Kod: %{http_code}, Cas: %{time_total}s\n" \
+             "$url"
+
+        sleep 2
+    done
+}
+
 echo "[*] Zvol URL na testovanie:"
 echo "[a] UKF Webmail"
 echo "[b] UKF AiS"
-echo
-read -p "Moznost: " ch
+read -rp "Moznost: " domcho
 
-if [[ "$ch" = "a" ]]; then
-    url="https://studentmail.ukf.sk/webmail/"
-elif [[ "$ch" = "b" ]]; then
-    url="https://ais2.ukf.sk/ais/start.do"
-else
-    echo "[-] Neplatna volba."
-    exit 1
-fi
+case "$domcho" in
+    a) url="https://studentmail.ukf.sk/webmail/" ;;
+    b) url="https://ais2.ukf.sk/ais/start.do" ;;
+    *) echo "[-] Nespravna volba"; exit 1 ;;
+esac
 
-read -p "[*] Zadajte pocet poziadaviek: " rq 
-for i in $(seq 1 "$rq"); do
-    echo "[?] ${i}. Poziadavka..."
-    response=$(curl -o /dev/null -s -w "Kod: %{http_code}, Cas: %{time_total}\n" "$url")
-    echo "$response"
-    sleep 2
-done
+read -rp "[*] Zadajte pocet poziadaviek: " rq
 
+# validacia vstupu
+[[ "$rq" =~ ^[0-9]+$ ]] || { echo "[-] Pocet poziadaviek musi byt cislo"; exit 1; }
+
+test_response "$url" "$rq"

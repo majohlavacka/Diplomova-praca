@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-PASS_FILE="modules/passwords.txt"
+BASE_DIR="$(cd "$(dirname "$0")" && pwd)"
+
+PASS_FILE="$BASE_DIR/passwords.txt"
 
 # funkcia na generovanie hesiel
 generate_passwords() {
