@@ -1,13 +1,15 @@
 #!/usr/bin/env bash
 
+BASE_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+
+PASS_FILE="$BASE_DIR/modules/passwords.txt"
+
 read -rp "[*] Hladane heslo v passwords.txt ? Heslo: " search
 echo
 
-PASS_FILE="modules/passwords.txt"
-
 # kontrola existencie suboru
 if [[ ! -f "$PASS_FILE" ]]; then
-  echo "[-] Subor passwords.txt neexistuje"
+  echo "[-] Subor passwords.txt neexistuje: $PASS_FILE"
   exit 1
 fi
 
