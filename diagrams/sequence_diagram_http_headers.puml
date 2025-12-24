@@ -22,6 +22,7 @@ Modul -> Target : kontrola hlavičiek
 loop header in "${headers[@]}"
   alt echo "$response" | grep -i "$header" > /dev/null
     Modul -> Console : výpis nájdených hlavičiek podľa zoznamu
+    Modul -> Console : uloženie výsledkov skenu do /resources/headers.txt 
   end
 end
 
