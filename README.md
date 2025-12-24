@@ -7,7 +7,7 @@ Nástroj nesie názov `IKnowMyUni (skrátene IKMU)` a v súčasnosti obsahuje se
 - Vykonajte príkaz `find . -type f \( -name "*.sh" -o -name "*.py" \) -exec chmod a+x {} +`, pričom bodka zabezpečuje to, aby v danom adresáry a podadresároch našiel všetky .sh, .py súbory a pridelil im príkazom `chmod a+x` spustitelné práva. 
 
 # Hlavný program 
-Hlavný program nesie názov `ikmu.sh` a jeho spustenie je možné 2 spôsobmi `./ikmu.sh` alebo `bash ikmu.sh`. Pre vysvetlívky je treba pridať ešte `-h` alebo `--help`, napr. `./ikmu.sh -h`. 
+Hlavný program nesie názov `ikmu.sh` a jeho spustenie je možné 2 spôsobmi `./ikmu.sh` alebo `bash ikmu.sh`. Pre vysvetlívky je treba pridať ešte `-h` alebo `--help`, napr. `./ikmu.sh -h`. Po spustení nástroja sa automaticky kontrolujú systémové a Python závislosti, ktoré sú potrebné pre fungovanie jednotlivých modulov.
 Obsahuje hlavné menu, ktoré volá jednotlivé možnosti.
 Každý Bash skript obsahuje shebang `#!/usr/bin/env bash`. Tento prístup zabezpečí, že sa použije bash, ktorý je dostupný v systéme používateľa (podľa jeho PATH). Vďaka tomu sú skripty prenosnejšie a môžu fungovať na rôznych UNIX systémoch, kde bash nemusí byť uložený na fixnej ceste ako `/bin/bash`.
 
@@ -16,6 +16,13 @@ Každý Bash skript obsahuje shebang `#!/usr/bin/env bash`. Tento prístup zabez
   <br>
   <i>Obrázok 1 Diagram komponentov</i>
 </p>
+
+# Requirements
+Priečinok `requirements/` obsahuje skripty: 
+- `check_dependencies.sh` - kontroluje, či sú všetky systémové a Python závislosti potrebné pre IKMU nainštalované.
+- `install.sh` - v prípade, že nejaká závislosť chýba, vyzve používateľa na ich doinštalovanie a spustí inštaláciu.
+
+Skripty sú primárne volané pri spustení nástroja, nie je potrebné ich volať manuálne.
 
 # Moduly
 Nástroj obsahuje dokopy 7 modulov a na vývoji ďalších sa pracuje. Jednotlivé moduly získavajú citlivé alebo inak užitočné údaje z domén UKF Webmail a AiS. 
