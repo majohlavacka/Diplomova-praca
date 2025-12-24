@@ -41,9 +41,27 @@ show_help() {
     echo
 }
 
+# pocet modulov, v pripade dodatocnych modulov zacinajucich _ nepocita
+count_modules() {
+    find "$BASE_DIR/modules" -maxdepth 1 -type f \
+        \( -name "*.sh" -o -name "*.py" \) \
+        ! -name "_*" | wc -l
+}
+
+# pocet extended modulov
+count_extended() {
+    find "$BASE_DIR/modules/extended" -type f \
+        \( -name "*.sh" -o -name "*.py" \) \
+        ! -name "_*" | wc -l
+}
+
 # MENU
 menu() {
     clear
+    
+    MODULES_COUNT=$(count_modules)
+    EXTENDED_COUNT=$(count_extended)
+    
     echo "###################################"
     echo "#           IKnowMyUni            #"
     echo "###################################"
@@ -52,8 +70,8 @@ menu() {
     echo "Author: Marian Hlavacka"
     echo "GitHub: https://github.com/majohlavacka/Diplomova-praca"
     echo
-    echo "10 modules currently"
-    echo "1 extended module currently"
+    echo "$MODULES_COUNT modules currently"
+    echo "$EXTENDED_COUNT extended module(s) currently"
     echo
     echo "[*] Dostupne moznosti:"
     echo
