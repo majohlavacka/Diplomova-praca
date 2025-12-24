@@ -1,0 +1,9 @@
+bash
+grep
+sed
+awk
+curl
+wget
+dig
+python3
+pip3

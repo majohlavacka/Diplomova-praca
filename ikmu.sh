@@ -1,15 +1,31 @@
 #!/usr/bin/env bash
 
-# dynamicka cesta k nastroju
+# dynamicka absolutna cesta 
 BASE_DIR="$(cd "$(dirname "$0")" && pwd)"
+
+REQ_DIR="$BASE_DIR/requirements"
+CHECK_DEPS="$REQ_DIR/check_dependencies.sh"
 
 clear
 
+
+# KONTROLA ZAVISLOSTI
+if [[ -x "$CHECK_DEPS" ]]; then
+    bash "$CHECK_DEPS"
+else
+    echo "[-] check_dependencies.sh nenajdeny alebo nema prava na spustenie"
+    echo "[-] Skontroluj priecinok requirements/"
+    exit 1
+fi
+
+sleep 3
+
+# NAPOVEDA
 show_help() {
     echo "Pouzitie: ./ikmu alebo bash ikmu"
-    echo ""
+    echo
     echo "  -h, --help       Zobrazi napovedu pouzitia nastroja"
-    echo ""
+    echo
     echo "Dostupne moduly:"
     echo "  a) Testovanie odozvy a Rate-limitingu"
     echo "  b) Generovat hesla"
@@ -25,6 +41,7 @@ show_help() {
     echo
 }
 
+# MENU
 menu() {
     clear
     echo "###################################"
@@ -36,7 +53,7 @@ menu() {
     echo "GitHub: https://github.com/majohlavacka/Diplomova-praca"
     echo
     echo "10 modules currently"
-    echo "1 extended modules currently"
+    echo "1 extended module currently"
     echo
     echo "[*] Dostupne moznosti:"
     echo
@@ -53,7 +70,7 @@ menu() {
     echo "[h] Napoveda"
     echo "[x] Ukoncit nastroj"
     echo
-    read -p "[*] Moznost: " choice
+    read -rp "[*] Moznost: " choice
 
     case "$choice" in
         a) bash "$BASE_DIR/modules/ping-uni.sh" ;;
@@ -68,23 +85,23 @@ menu() {
         k) bash "$BASE_DIR/modules/mirror-web.sh" ;;
         h|-h|--help) show_help ;;
         x) exit 0 ;;
-        *) 
+        *)
             echo "Zadali ste nespravnu moznost."
             sleep 1
             ;;
     esac
 
     echo
-    read -p "Stlac ENTER pre navrat do menu..."
+    read -rp "Stlac ENTER pre navrat do menu..."
 }
 
-# podpora ./ikmu -h / --help
+# PODPORA -h / --help
 if [[ "$1" == "-h" || "$1" == "--help" ]]; then
     show_help
     exit 0
 fi
 
-# hlavny loop menu
+# HLAVNY LOOP
 while true; do
     menu
 done
