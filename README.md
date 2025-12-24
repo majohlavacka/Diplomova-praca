@@ -179,7 +179,7 @@ Postup na inštaláciu a spustenie skriptu je následnový:
 - Spustíme nástroj `./ikmu.sh`
 
 <p align="center">
-  <img src="images/menu_update.PNG" alt="Obrázok 14 Menu nástroja IKMU" width="700"/>
+  <img src="images/menu_update_2.PNG" alt="Obrázok 14 Menu nástroja IKMU" width="700"/>
   <br>
   <i>Obrázok 14 Menu nástroja IKMU</i>
 </p>
@@ -198,5 +198,5 @@ Pri spustení môžu nastať errory ako `$'\r': command not found`. Jedná sa o 
 - Autor nenesie žiadnu zodpovednosť za prípadné zneužitie nástroja
 
 # Autor
-**MH**
+**Marián Hlavačka**
 
