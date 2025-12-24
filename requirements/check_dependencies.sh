@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -e  # ukonci skript ak sa akykoľvek prikaz neuskutocni uspesne
+set -e  # ukonci skript, ak sa akykolvek prikaz neuskutocni uspesne
 
 BASE_DIR="$(cd "$(dirname "$0")" && pwd)"  # absolutna cesta k priecinku skriptu
 
@@ -15,6 +15,8 @@ MISS_PY="$BASE_DIR/.missing_python"   # docasny subor pre chybujuce python modul
 check_cmd() {   # funkcia na kontrolu existencie prikazu
   command -v "$1" >/dev/null 2>&1
 }
+
+PYTHON=$(which python3)  # pouzi presnu cestu k Python3
 
 echo "[*] Kontrola systemovych zavislosti..."
 
@@ -37,10 +39,7 @@ while read -r line; do
   pip_name="${line%%:*}"                # pip nazov balika
   import_name="${line##*:}"             # nazov modulu pre import
 
-  if python3 - <<EOF 2>/dev/null
-import $import_name
-EOF
-  then
+  if $PYTHON -c "import $import_name" 2>/dev/null; then
     echo "[+] python:$pip_name OK"
   else
     echo "[-] python:$pip_name CHYBA"
@@ -69,7 +68,7 @@ if [[ "$answ" =~ ^[Yy]$ ]]; then
   sudo -v || { echo "[-] Sudo zrusene"; exit 1; }
 
   echo "[*] Spustam install.sh..."
-  sudo bash "$BASE_DIR/install.sh" # zavola instalacny skript ako sudo
+  sudo bash "$BASE_DIR/install.sh"  # zavola instalacny skript ako sudo
 else
   echo "[-] Instalacia zrusena"
 fi
