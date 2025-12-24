@@ -85,7 +85,7 @@ Tento modul odošle `HTTP HEAD` a `GET` požiadavky na zvolenú URL adresu (UKF 
 <p align="center">
   <img src="diagrams/sequence_diagram_tech_detect.png" alt="Obrázok 7 Sekvenčný diagram modulu Tech-detect" width="700"/>
   <br>
-  <i> Obrázok 7 Sekvenčný diagram modulu Http-headers </i>
+  <i> Obrázok 7 Sekvenčný diagram modulu Tech-detect </i>
 </p>
 
 ## Modul: g) Zistenie IP adresy a polohy
@@ -94,7 +94,7 @@ Tento modul umožňuje vybrať doménu UKF Webmail alebo AiS, zistí jej IP adre
 <p align="center">
   <img src="diagrams/sequence_diagram_ip_info.png" alt="Obrázok 8 Sekvenčný diagram modulu IP-info" width="700"/>
   <br>
-  <i> Obrázok 8 Sekvenčný diagram modulu Http-headers </i>
+  <i> Obrázok 8 Sekvenčný diagram modulu IP-info </i>
 </p>
 
 ## Modul: i) Hladat heslo vo vytvorenom zozname
