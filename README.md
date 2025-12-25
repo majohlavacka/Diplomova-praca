@@ -107,7 +107,9 @@ Tento modul vyhľadáva zadaný reťazec prostreddníctvom nástroja `grep` a te
 </p>
 
 ## Modul: j) Zistenie technológií (Python verzia)
-Táto verzia modulu predstavuje preprogramovanú implementáciu pôvodného Bashu do jazyka Python 3. Na komunikáciu so serverom využíva knižnicu `requests`, pre spracovanie HTML odpovede knižnicu `BeautifulSoup` z balíka `bs4` a pre detekciu vzorov v texte knižnicu `re (regular expressions)`. Rovnako zisťuje technológie spomenúte v Bash verzií. 
+Tento modul predstavuje preprogramovanú verziu pôvodného Bash skriptu do Python 3.  
+Na komunikáciu so serverom využíva knižnicu `requests`, pre spracovanie HTML odpovedí knižnicu `BeautifulSoup` z balíka `bs4`, pre detekciu vzorov v texte knižnicu `re` (regular expressions) a pre spracovanie URL knižnicu `urllib.parse`, ktorá sa používa na extrakciu domény z URL, aby sa výsledný JSON súbor s detekciou technológií mohol pomenovať podľa cieľovej domény.  
+Modul zisťuje frontend a backend technológie webovej stránky, priraďuje im skóre istoty (confidence score) a výsledok exportuje do JSON súboru v priečinku `logs/`.
 
 ## Modul: k) Mirror web stranky
 Tento modul dokáže spraviť frontend kópiu prihlasovacej stránky na UKF Webmail alebo AiS. Kedže neexistuje WAF alebo pravdilo WAF-u, je možné stránku kompletne nakopírovať a ďalej využiť na phishing útok.
