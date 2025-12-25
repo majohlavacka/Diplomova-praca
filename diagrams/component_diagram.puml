@@ -22,6 +22,13 @@ package "Diplomova-Praca" {
   package extended {
     component "detect-round.sh" as detect_round <<Bash>>
   }
+
+  package requirements {
+    component "check_dependencies.sh" as check_dependencies <<Bash>>
+    component "install.sh" as install <<Bash>>
+    component "python.txt" as python <<Text File>>
+    component "bash.txt" as bash <<Text File>>
+  }
   
   package mirrors_full_localhost {
     component "login.html" as login_webmail_html <<HTML>>
@@ -53,6 +60,9 @@ package "Diplomova-Praca" {
   artifact "ais_web_images" as ais_all_images <<png,jpg,ico,gif>>
   artifact "jquer-3.2.1.min.js" as ais_jquery <<js>>
   artifact "portal_2.js" as ais_portal_js <<js>>
+  artifact "http_headers_url_date_log.txt" as http_headers_url_date_log <<Text File>>
+  artifact "ip_info_url_date_log.txt" as ip_info_url_date_log <<Text File>>
+  artifact "tech_detect_url_date.txt" as tech_detect_url_date <<JSON>>
 }
 
 ikmu --> brute_ais
@@ -68,10 +78,10 @@ ikmu --> tech_detect_python
 tech_detect --> detect_round
 ikmu --> mirror_web
 
-brute_ais ..> logs 
-brute_webmail ..> logs 
-logs ..> log_found_ais : Vytvorí a zapíše
-logs ..> log_found_webmail : Vytvorí a zapíše
+brute_ais ..> logs : Vytvorí a zapíše 
+brute_webmail ..> logs : Vytvorí a zapíše 
+logs ..> log_found_ais 
+logs ..> log_found_webmail 
 gen_pass ..> passwords : Vytvorí a zapíše 
 mirror_web ..> mirrors
 mirrors ..> webmail_mirrors
@@ -94,4 +104,17 @@ ais_js ..> ais_jquery
 ais_js ..> ais_portal_js
 
 modules ..> mirrors_full_localhost
+
+ikmu --> requirements : Prvý krok 
+check_dependencies ..> bash
+check_dependencies ..> python
+
+http_headers ..> logs : Vytvorí a zapíše 
+logs ..> http_headers_url_date_log
+
+ip_info ..> logs : Vytvorí a zapíše
+logs ..> ip_info_url_date_log
+
+tech_detect ..> logs : Vytvorí a zapíše
+logs ..> tech_detect_url_date
 @enduml

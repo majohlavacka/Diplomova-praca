@@ -17,6 +17,6 @@ end
 
 Modul -> Console : Zistenie IP
 Modul -> Console : Zistenie dodatočných informácií na základe IP 
-
+Modul -> Console : Uloženie výsledku do pričinku logs/
 
 @enduml

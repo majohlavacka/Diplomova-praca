@@ -1,0 +1,34 @@
+@startuml
+title Sekvenčný diagram: Detekovanie technlógií
+
+participant "ikmu.sh\n(main)" as IKMU
+participant "tech-detect.py\n(modul)" as Modul
+participant "detect-round.sh\n(modul)" as Modul_2
+participant "HTTP target\n(URL)" as Target
+participant "stdout" as Console
+
+
+IKMU -> Modul : spustenie nástroja a výber modulu
+Modul -> Target : zvolenie UKF Webmail / AiS
+Modul -> Console : detekujem technlógie
+Modul -> Target : získanie hlavičiek a HTML obsahu
+
+alt chyba
+  Target --> Modul : exception
+  Modul -> Console : nepodarilo sa získať hlavičky
+  Modul --> IKMU : návrat s chybou
+end
+Modul -> Console : analýza technológií hlavičkiek a HTML
+
+alt detect_technologies()
+  Modul -> Console : zistené technológie a confidence score
+  Modul -> Console : uloženie výsledkov do JSON súboru v priečinku logs/
+  
+  alt Roundcube
+    Modul -> Modul_2 : spustenie rošírujuceho modulu na overenie Roundcube
+    Modul_2 -> Console : výpis z modulu
+  end 
+end
+
+Modul -> Console : technológie neboli rozpoznané
+@enduml
