@@ -3,6 +3,8 @@
 title Diagram komponentov: Nástroj "I Know My Uni"
 
 package "Diplomova-Praca" {
+  component "setup.sh" as setup <<Bash>>
+  component "setup-rpi.sh" as setup_rpi <<Bash>>
   component "ikmu.sh" as ikmu <<Main Bash>>
 
   package modules {
@@ -67,6 +69,9 @@ package "Diplomova-Praca" {
   artifact "roundcube_detect_url_date.txt" as roundcube_detect_url_date <<JSON>>
 }
 
+setup --> setup : Prvý krok
+setup_rpi --> setup_rpi : Prvý krok v prípade RPI
+
 ikmu --> brute_ais
 ikmu --> brute_webmail
 ikmu --> scan_ports
@@ -107,7 +112,7 @@ ais_js ..> ais_portal_js
 
 modules ..> mirrors_full_localhost
 
-ikmu --> requirements : Prvý krok 
+ikmu --> requirements : \lAuto-krok
 check_dependencies ..> bash
 check_dependencies ..> python
 
