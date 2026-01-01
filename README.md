@@ -79,7 +79,7 @@ Tento modul zisťuje dostupné HTTP hlavičky zo zoznamu `resources/headers.txt`
   <i>Obrázok 6 Sekvenčný diagram modulu Http-headers</i>
 </p>
 
-## Modul: f) Zistenie technologii 
+## Modul: f) Zistenie technologii (Bash verzia)
 Tento modul odošle `HTTP HEAD` a `GET` požiadavky na zvolenú URL adresu (UKF Webmail alebo UKF AiS) a analyzuje odpoveď servera. Na základe hlavičiek a obsahu HTML identifikuje používané technológie, ako napríklad typ webového servera `(nginx, Apache, IIS)`, backendové prostredie `(PHP, Java, Python)` a CMS alebo frameworky `(WordPress, Laravel, React, Roundcube)`. V prípade detekcie Roundcube ponúkne spustenie rozšíreného modulu na jeho overenie.
 
 <p align="center">
@@ -143,7 +143,7 @@ Rozšírenie pre určité klasické moduly.
 Externé súbory, ktoré skripty potrebujú na svoju činnosť. Skripty načítavajú tieto súbory dynamicky, takže ich je môžné ľahko upravovať alebo rozširovať bez zmeny samotného kódu. 
 - `headers.txt` - využíva sa v rámci modulu `http-headers.sh` a obsahuje zoznam hlavičiek podľa OWASP. 
 
-## Extended modul: Zistenie webového klienta v rámci modulu f)
+## Extended modul: Zistenie webového klienta v rámci modulu f) (Bash verzia)
 Modul analyzuje webovú aplikáciu a na základe kombinácie cookies, HTML obsahu, známych alebo dynamicky zistených endpointov (?_task=…) a špecifických HTTP hlavičiek identifikuje a potvrdzuje prítomnosť webmail klienta `Roundcube`. 
 
 <p align="center">
@@ -151,6 +151,9 @@ Modul analyzuje webovú aplikáciu a na základe kombinácie cookies, HTML obsah
   <br>
   <i> Obrázok 12 Rozšírený moodul na detekciu Roundcube </i>
 </p>
+
+## Extended modul: Zistenie webového klienta v rámci modulu f) (Python verzia)
+Python verzia rozpoznáva webmail klienta Roundcube analýzou HTTP hlavičiek a HTML obsahu stránky. Používa heuristické indikátory rozdelené podľa sily dôkazov (hard, medium, weak) a počíta confidence skóre, na základe ktorého potvrdzuje prítomnosť Roundcube. Výsledok sa vypisuje na konzolu a zároveň sa ukladá do JSON súboru v priečinku logs/. Modul je robustnejší a modulárnejší než pôvodný Bash skript.
 
 # mirrors
 Priečinok obsahuje kópiu stránok (históriu), vykonané modulom `mirror-web.sh`.
