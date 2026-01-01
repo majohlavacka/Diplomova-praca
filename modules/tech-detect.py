@@ -217,10 +217,10 @@ def main():
     if found_roundcube:
         choice = input("\nChces overit Roundcube detailne? (y/n): ").strip().lower()
         if choice == "y":
-            extended_path = os.path.join(BASE_DIR, "extended", "detect-round.sh")
+            extended_path = os.path.join(BASE_DIR, "extended", "detect-round.py")
             if os.path.isfile(extended_path):
                 print("[*] Spustam extended modul detect-round.sh")
-                os.system(f"bash {extended_path} {url}")
+                os.system(f"python3 {extended_path} {url}")
             else:
                 print("[-] Extended modul neexistuje")
 
