@@ -155,6 +155,12 @@ Modul analyzuje webovú aplikáciu a na základe kombinácie cookies, HTML obsah
 ## Extended modul: Zistenie webového klienta v rámci modulu f) (Python verzia)
 Python verzia rozpoznáva webmail klienta Roundcube analýzou HTTP hlavičiek a HTML obsahu stránky. Používa heuristické indikátory rozdelené podľa sily dôkazov (hard, medium, weak) a počíta confidence skóre, na základe ktorého potvrdzuje prítomnosť Roundcube. Výsledok sa vypisuje na konzolu a zároveň sa ukladá do JSON súboru v priečinku logs/. Modul je robustnejší a modulárnejší než pôvodný Bash skript.
 
+<p align="center">
+  <img src="diagrams/sequence_diagram_extended_roundcube_detect_python.png" alt="Obrázok 12 Rozšírený moodul na detekciu Roundcube (Python verzia)" width="700"/>
+  <br>
+  <i> Obrázok 13 Rozšírený moodul na detekciu Roundcube (Python verzia) </i>
+</p>
+
 # mirrors
 Priečinok obsahuje kópiu stránok (históriu), vykonané modulom `mirror-web.sh`.
 
@@ -165,13 +171,13 @@ Všetky súbory sú uložené v adresári `/var/www/html/webmail`. Pre správnu 
 <p align="center">
   <img src="images/webmail_phishing_login.PNG" alt="Obrázok 13 Phishing stránka UKF Webmail pre login na lokálnom serveri" width="700"/>
   <br>
-  <i>Obrázok 13 Phishing stránka UKF Webmail pre login na lokálnom serveri</i>
+  <i>Obrázok 14 Phishing stránka UKF Webmail pre login na lokálnom serveri</i>
 </p>
 
 <p align="center">
   <img src="images/webmail_phishing_text_file.PNG" alt="Obrázok 14 Zachytené údaje v textovom súbore" width="700"/>
   <br>
-  <i>Obrázok 14 Zachytené údaje v textovom súbore</i>
+  <i>Obrázok 15 Zachytené údaje v textovom súbore</i>
 </p>
 
 
@@ -192,7 +198,7 @@ Postup na inštaláciu a spustenie skriptu je následnový:
 <p align="center">
   <img src="images/menu_update_2.PNG" alt="Obrázok 15 Menu nástroja IKMU" width="700"/>
   <br>
-  <i>Obrázok 15 Menu nástroja IKMU</i>
+  <i>Obrázok 16 Menu nástroja IKMU</i>
 </p>
 
 ## Možný problém pri spustení modulov
