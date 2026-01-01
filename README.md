@@ -19,7 +19,7 @@ Obsahuje hlavné menu, ktoré volá jednotlivé možnosti.
 Každý Bash skript obsahuje shebang `#!/usr/bin/env bash`. Tento prístup zabezpečí, že sa použije bash, ktorý je dostupný v systéme používateľa (podľa jeho PATH). Vďaka tomu sú skripty prenosnejšie a môžu fungovať na rôznych UNIX systémoch, kde bash nemusí byť uložený na fixnej ceste ako `/bin/bash`.
 
 <p align="center">
-  <img src="images/menu_kali.png" alt="Obrázok 2 Menu nástroja IKMU (Kali Linux)" width="700"/>
+  <img src="images/menu_kali.PNG" alt="Obrázok 2 Menu nástroja IKMU (Kali Linux)" width="700"/>
   <br>
   <i>Obrázok 2 Menu nástroja IKMU (Kali Linux)</i>
 </p>
@@ -30,7 +30,7 @@ Priečinok `requirements/` obsahuje skripty:
 - `install.sh` - v prípade, že nejaká závislosť chýba, vyzve používateľa na ich doinštalovanie a spustí inštaláciu.
 
 <p align="center">
-  <img src="images/check_dependencies_kali.png" alt="Obrázok 3 Kontrola závislostí po spustení nástroja IKMU (Kali Linux)" width="700"/>
+  <img src="images/check_dependencies_kali.PNG" alt="Obrázok 3 Kontrola závislostí po spustení nástroja IKMU (Kali Linux)" width="700"/>
   <br>
   <i>Obrázok 3 Kontrola závislostí po spustení nástroja IKMU (Kali Linux)</i>
 </p>
