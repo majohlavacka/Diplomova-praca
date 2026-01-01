@@ -1,6 +1,6 @@
 # Diplomová práca
 Tento nástroj slúži ako diplomová práca ktorá sa zameriava na penetračné testovanie univerzity UKF. Pri jeho implementácii boli použité programovacie jazyky Bash a Python a testovaný bol v operačných systémoch Kali Linux a Raspbian OS.
-Nástroj nesie názov `IKnowMyUni (skrátene IKMU)` a v súčasnosti obsahuje sedem modulov, pričom na vývoji ďalších sa stále pracuje
+Nástroj nesie názov `IKnowMyUni (skrátene IKMU)` a v súčasnosti obsahuje 10 modulov, pričom na vývoji ďalších sa stále pracuje
 
 # Download
 - Na stiahnutie treba použiť `wget` alebo `git clone` `https://github.com/majohlavacka/Diplomova-praca` a následne treba spraviť súbory .sh a .py spustitelné.
