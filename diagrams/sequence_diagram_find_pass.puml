@@ -8,11 +8,15 @@ participant "stdout" as Console
 
 
 IKMU -> Modul : spustenie nástroja a výber modulu
-Modul -> File : hľadanie hesla "f"
-alt grep -i -q "$f" modules/passwords.txt &> /dev/null
-  
-  Modul -> Console : heslo "f" nájdene
+Modul -> File : hľadanie hesla "search"
+
+alt  ! -f "$PASS_FILE" 
+  Modul -> Console : súbor passwords.txt neexistuje
 end
-Modul -> Console : heslo sa v zozname nenašlo
+
+alt grep -Fxqi -- "$search" "$PASS_FILE"
+  Modul -> Console : úspech, heslo nájdene (riadok:heslo)
+end
+Modul -> Console : heslo sa v zozname nenachádza
 
 @enduml

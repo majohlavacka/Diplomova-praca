@@ -9,12 +9,17 @@ participant "stdout" as Console
 
 IKMU -> Ping : spustenie nástroja a výber modulu
 Ping -> Target : zvolenie UKF Webmail / AiS
-alt
+
+Ping -> Target : zadať počet požiadaviek "rq"
+
+alt 
   Target --> Ping : exception
-  Ping -> Console : neplatná voľba
+  Ping -> Console : počet požiadaviek musí byť číslo
   Ping --> IKMU : návrat s chybou
 end
-Ping -> Target : zadať počet požiadaviek "rq"
+
+Ping -> Target : test_response()
+
 
 loop
   Ping -> Console : číslo požiadaky "rq"

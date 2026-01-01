@@ -1,0 +1,25 @@
+@startuml
+title Sekvenčný diagram: Detekcia Roundcube technológie (python verzia)
+
+participant "tech-detect.sh\n(modul)" as Modul
+participant "tech-detect-roundcube.py\n(modul)" as Modul2
+participant "HTTP target\n(URL)" as Target
+participant "stdout" as Console
+
+Modul -> Modul2 : volanie rozšíreného modulu pre UKF Webmail
+Modul2 -> Target : volanie 2 požiadaviek: requests.head, requests.get
+Target -> Modul2 : odpoveď: hlavičky a HTML telo
+Modul2 -> Target : prehľadávanie syntaxe weak, mid, hard v ROUNDCUBE_INDICATORS 
+
+alt len(sys.argv) != 2
+  Modul2 -> Console: Pouzitie: {sys.argv[0]} <url>
+end
+
+alt not result
+  Modul2 -> Console: detekcia zlyhala 
+end
+
+Modul2 -> Console : Vysledok Roundcube analyzy: Potvrdenie: (True, False), Confidence: (napr. 70%)
+Modul2 -> Console : Roundcube JSON výstup uložený do logs/
+
+@enduml

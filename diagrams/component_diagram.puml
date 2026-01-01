@@ -21,6 +21,7 @@ package "Diplomova-Praca" {
 
   package extended {
     component "detect-round.sh" as detect_round <<Bash>>
+    component "detect-round.py" as detect_round_python <<Python>>
   }
 
   package requirements {
@@ -63,6 +64,7 @@ package "Diplomova-Praca" {
   artifact "http_headers_url_date_log.txt" as http_headers_url_date_log <<Text File>>
   artifact "ip_info_url_date_log.txt" as ip_info_url_date_log <<Text File>>
   artifact "tech_detect_url_date.txt" as tech_detect_url_date <<JSON>>
+  artifact "roundcube_detect_url_date.txt" as roundcube_detect_url_date <<JSON>>
 }
 
 ikmu --> brute_ais
@@ -75,7 +77,7 @@ ikmu --> ip_info
 ikmu --> tech_detect
 ikmu --> ping_uni
 ikmu --> tech_detect_python
-tech_detect --> detect_round
+tech_detect --> detect_round_python
 ikmu --> mirror_web
 
 brute_ais ..> logs : Vytvorí a zapíše 
@@ -117,4 +119,7 @@ logs ..> ip_info_url_date_log
 
 tech_detect ..> logs : Vytvorí a zapíše
 logs ..> tech_detect_url_date
+
+detect_round_python ..> logs : Vytvorí a zapíše
+logs ..> roundcube_detect_url_date
 @enduml

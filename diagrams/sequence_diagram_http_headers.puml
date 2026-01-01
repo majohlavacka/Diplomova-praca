@@ -4,11 +4,14 @@ title Sekvenčný diagram: Kontrola hlavičiek
 participant "ikmu.sh\n(main)" as IKMU
 participant "http-headers.sh\n(modul)" as Modul
 participant "HTTP target\n(URL)" as Target
+participant "resources/headers.txt\n(URL)" as Headers
 participant "stdout" as Console
 
 
 IKMU -> Modul : spustenie nástroja a výber modulu
 Modul -> Target : zvolenie UKF Webmail / AiS
+
+Modul -> Target : check_headers() 
 
 alt 
   Target --> Modul : exception
@@ -16,17 +19,14 @@ alt
   Modul --> IKMU : návrat s chybou
 end
 
-Modul -> Target : kontrola hlavičiek
-
+Target -> Modul : získane hlavičky
+Modul -> Headers : načítanie externých hlavičiek do zoznamu headers[]
 
 loop header in "${headers[@]}"
-  alt echo "$response" | grep -i "$header" > /dev/null
-    Modul -> Console : výpis nájdených hlavičiek podľa zoznamu
-    Modul -> Console : uloženie výsledkov skenu do /resources/headers.txt 
+  alt -n "$value"
+    Modul -> Console : výpis nájdených hlavičiek podľa zoznamu a ukladanie výsledkov do logs/
   end
+  Modul -> Console : výpis nenájdených hlavičiek podľa zoznamu a ukladanie výsledkov do logs/
 end
-
-Modul -> Console : hlavičky sa nenašli
-
 
 @enduml
