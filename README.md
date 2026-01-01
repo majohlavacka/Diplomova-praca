@@ -38,7 +38,7 @@ Priečinok `requirements/` obsahuje skripty:
 Skripty sú primárne volané pri spustení nástroja, nie je potrebné ich volať manuálne.
 
 # Moduly
-Nástroj obsahuje dokopy 7 modulov a na vývoji ďalších sa pracuje. Jednotlivé moduly získavajú citlivé alebo inak užitočné údaje z domén UKF Webmail a AiS. 
+Nástroj obsahuje dokopy 10 modulov a na vývoji ďalších sa pracuje. Jednotlivé moduly získavajú citlivé alebo inak užitočné údaje z domén UKF Webmail a AiS. 
 
 ## Modul: a) Testovanie odozvy a Rate-limitingu
 Tento modul sa zameriava na posielanie GET požiadaviek a kontrolu statusu odpovede a času odozvy. Pomocou tohto modulu môžeme testovať a predpokladať rate-limiting alebo CAPTCHA mechanizmy. 
