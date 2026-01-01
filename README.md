@@ -4,7 +4,8 @@ Nástroj nesie názov `IKnowMyUni (skrátene IKMU)` a v súčasnosti obsahuje se
 
 # Download
 - Na stiahnutie treba použiť `wget` alebo `git clone` `https://github.com/majohlavacka/Diplomova-praca` a následne treba spraviť súbory .sh a .py spustitelné.
-- Vykonajte príkaz `find . -type f \( -name "*.sh" -o -name "*.py" \) -exec chmod a+x {} +`, pričom bodka zabezpečuje to, aby v danom adresáry a podadresároch našiel všetky .sh, .py súbory a pridelil im príkazom `chmod a+x` spustitelné práva. 
+- Pre urýchlenie spustite `setup.sh` príkazom `bash setup.sh` alebo najprv priraďte spustiteľné práva príkazom `chmod u+x setup.sh` a potom spustite `./setup.sh`.
+- `setup.sh` - obsahuje príkaz  `find . -type f \( -name "*.sh" -o -name "*.py" \) -exec chmod u+x {} +`, pričom bodka zabezpečuje to, aby v danom adresári a podadresároch našiel všetky .sh, .py súbory a pridelil im príkazom `chmod u+x` spustitelné práva, pre aktuálneho používateľa. 
 
 # Hlavný program 
 Hlavný program nesie názov `ikmu.sh` a jeho spustenie je možné 2 spôsobmi `./ikmu.sh` alebo `bash ikmu.sh`. Pre vysvetlívky je treba pridať ešte `-h` alebo `--help`, napr. `./ikmu.sh -h`. Po spustení nástroja sa automaticky kontrolujú systémové a Python závislosti, ktoré sú potrebné pre fungovanie jednotlivých modulov.
@@ -204,10 +205,13 @@ Postup na inštaláciu a spustenie skriptu je následnový:
 ## Možný problém pri spustení modulov
 Pri spustení môžu nastať errory ako `$'\r': command not found`. Jedná sa o problém, kde skript má Windows konce riadkov (CRLF) (\r), preto shell vidí neexistujúce príkazy ako `clear\r` a `shebang/case` sú poškodené.
 
-### Vyrišenie problému
+### Vyrišenie problému - automaticky
+Spustite skript `setup-rpi.sh` príkazom `setup-rpi.sh` alebo najprv priraďte spustiteľné práva príkazom `chmod u+x setup-rpi.sh` a následne ho spustite `./setup-rpi.sh`. po dokončení setupu môžete spustiť hlavný nástroj príkazom `./ikmu.sh`.
+
+### Vyrišenie problému - manuálne
   1. Vykonaj príkaz: `sudo apt update && sudo apt install -y dos2unix`
   2. Vykonaj príkaz: `find . -type f \( -name "*.sh" -o -name "*.py" \) -exec dos2unix {} +` - konvertuje súbor na Unix konce riadkov
-  3. Vykonaj príkaz: `find . -type f \( -name "*.sh" -o -name "*.py" \) -exec chmod a+x {} +`
+  3. Vykonaj príkaz: `find . -type f \( -name "*.sh" -o -name "*.py" \) -exec chmod u+x {} +`
   4. Spusti: `./ikmu.sh`
 
 # Dôležitá poznámka k projektu
