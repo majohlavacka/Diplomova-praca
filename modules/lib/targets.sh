@@ -20,5 +20,6 @@ select_target() {
             ;;
     esac
 
+    # premenna TARGET_URL je dostupna pre ine moduly
     export TARGET_URL
 }
