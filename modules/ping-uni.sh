@@ -1,5 +1,14 @@
 #!/usr/bin/env bash
 
+# absolutna cesta k adresaru modulu
+BASE_DIR="$(cd "$(dirname "$0")" && pwd)"
+
+# import spolocnej funkcie na vyber URL
+source "$BASE_DIR/lib/targets.sh" || {
+    echo "[-] Nepodarilo sa nacitat lib/targets.sh"
+    exit 1
+}
+
 # funkcia na testovanie odozvy
 test_response() {
     local url="$1"
@@ -20,20 +29,14 @@ test_response() {
     done
 }
 
-echo "[*] Zvol URL na testovanie:"
-echo "[a] UKF Webmail"
-echo "[b] UKF AiS"
-read -rp "Moznost: " domcho
+# volanie funkcie na vyber cielenej URL
+select_target || exit 1
 
-case "$domcho" in
-    a) url="https://studentmail.ukf.sk/webmail/" ;;
-    b) url="https://ais2.ukf.sk/ais/start.do" ;;
-    *) echo "[-] Nespravna volba"; exit 1 ;;
-esac
-
+# zadanie poctu poziadaviek
 read -rp "[*] Zadajte pocet poziadaviek: " rq
 
-# validacia vstupu
+# validacia vstupu – musi byt cislo
 [[ "$rq" =~ ^[0-9]+$ ]] || { echo "[-] Pocet poziadaviek musi byt cislo"; exit 1; }
 
-test_response "$url" "$rq"
+# spustenie testu odozvy
+test_response "$TARGET_URL" "$rq"

@@ -1,30 +1,30 @@
 #!/usr/bin/env bash
 
+# absolutna cesta k adresaru modulu
 BASE_DIR="$(cd "$(dirname "$0")" && pwd)"
-MIRROR_DIR="$BASE_DIR/mirrors"
 
+# adresar pre mirrorovane weby
+MIRROR_DIR="$BASE_DIR/mirrors"
 mkdir -p "$MIRROR_DIR"
 
-# vyber URL
-echo "[*] Zvol URL na testovanie:"
-echo "[a] UKF Webmail"
-echo "[b] UKF AiS"
-echo
-read -rp "Moznost: " ch
+# import spolocnej funkcie na vyber URL
+source "$BASE_DIR/lib/targets.sh" || {
+    echo "[-] Nepodarilo sa nacitat lib/targets.sh"
+    exit 1
+}
 
-# nastavenie url a nazvu suboru podla volby
-case "$ch" in
-    a) url="https://studentmail.ukf.sk/webmail/"; name="webmail" ;;
-    b) url="https://ais2.ukf.sk/ais/start.do"; name="ais" ;;
-    *) echo "[-] Neplatna volba."; exit 1 ;;
-esac
+# volanie funkcie na vyber cielenej URL
+select_target || exit 1
+
+# odvodime "name" z domeny (napr. studentmail.ukf.sk -> studentmail)
+name=$(echo "$TARGET_URL" | sed -E 's|https?://([^/.]+).*|\1|')
 
 # timestamp pre unikatny nazov adresara
 TIMESTAMP=$(date +%Y%m%d_%H%M%S)
 OUT_DIR="${MIRROR_DIR}/${name}_${TIMESTAMP}"
 
 echo
-echo "[*] Mirrorujem: $url"
+echo "[*] Mirrorujem: $TARGET_URL"
 echo "[*] Ukladam do: $OUT_DIR"
 echo
 
@@ -34,7 +34,7 @@ mkdir -p "$OUT_DIR"
 # spustenie mirrorovania pomocou wget
 wget -P "$OUT_DIR" \
      --page-requisites --convert-links --adjust-extension \
-     --no-parent "$url"
+     --no-parent "$TARGET_URL"
 
 # kontrola vysledku
 if [[ $? -eq 0 ]]; then

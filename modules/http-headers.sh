@@ -1,7 +1,13 @@
 #!/usr/bin/env bash
 
-# absolutna cesta k adresaru 
+# absolutna cesta k adresaru modulu
 BASE_DIR="$(cd "$(dirname "$0")" && pwd)"
+
+# import spolocnej funkcie na vyber URL
+source "$BASE_DIR/lib/targets.sh" || {
+    echo "[-] Nepodarilo sa nacitat lib/targets.sh"
+    exit 1
+}
 
 # cesty k suborom a adresarom
 HEADERS_FILE="$BASE_DIR/resources/headers.txt"
@@ -62,17 +68,8 @@ check_headers() {
     done
 }
 
-# vyber URL
-echo "[*] Zvol URL na testovanie:"
-echo "[a] UKF Webmail"
-echo "[b] UKF AiS"
-read -rp "Moznost: " churl
-
-case "$churl" in
-    a) url="https://studentmail.ukf.sk/webmail/" ;;
-    b) url="https://ais2.ukf.sk/ais/start.do" ;;
-    *) echo "[-] Nespravna volba"; exit 1 ;;
-esac
+# volanie funkcie na vyber cielenej URL
+select_target || exit 1
 
 # spustenie kontroly
-check_headers "$url"
+check_headers "$TARGET_URL"

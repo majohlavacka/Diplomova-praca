@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
 
+# absolutna cesta k adresaru modulu
 BASE_DIR="$(cd "$(dirname "$0")" && pwd)"
+
+# import spolocnej funkcie na vyber URL
+source "$BASE_DIR/lib/targets.sh" || {
+    echo "[-] Nepodarilo sa nacitat lib/targets.sh"
+    exit 1
+}
 
 # adresar pre logy
 LOG_DIR="$BASE_DIR/logs"
@@ -51,15 +58,11 @@ check_ip_info() {
     echo
 }
 
-echo "[*] Zvol URL na testovanie:"
-echo "[a] UKF Webmail"
-echo "[b] UKF AiS"
-read -rp "Moznost: " domcho
+# volanie funkcie na vyber cielenej URL
+select_target || exit 1
 
-case "$domcho" in
-    a) domain="studentmail.ukf.sk" ;;
-    b) domain="ais2.ukf.sk" ;;
-    *) echo "[-] Nespravna volba"; exit 1 ;;
-esac
+# odvodime domenu z TARGET_URL
+domain=$(echo "$TARGET_URL" | sed -E 's|https?://([^/]+)/?.*|\1|')
 
+# spustenie kontroly IP informacii
 check_ip_info "$domain"
