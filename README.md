@@ -139,9 +139,6 @@ Tento modul dokáže spraviť frontend kópiu prihlasovacej stránky na UKF Webm
   <i> Obrázok 13 Sekvenčný diagram modulu Mirror-web</i>
 </p>
 
-## Modul: l) Skenovanie otvorenych portov 
-Modul vo vývoji.
-
 ## Možnosť h) a možnosť x)
 - `h` - vypíše vysvetlivky k jednotlivým modulom.
 - `x` - ukončí program
