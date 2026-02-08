@@ -10,7 +10,6 @@ package "Diplomova-Praca" {
   package modules {
     component "brute-ais.py" as brute_ais <<Python>>
     component "brute-webmail.py" as brute_webmail <<Python>>
-    component "scan-ports.sh" as scan_ports <<Bash>>
     component "http-headers.sh" as http_headers <<Bash>>
     component "tech-detect.sh" as tech_detect <<Bash>>
     component "find-pass.sh" as find_pass <<Bash>>
@@ -74,7 +73,6 @@ setup_rpi --> setup_rpi : Prvý krok v prípade RPI
 
 ikmu --> brute_ais
 ikmu --> brute_webmail
-ikmu --> scan_ports
 ikmu --> http_headers
 ikmu --> find_pass
 ikmu --> gen_pass
