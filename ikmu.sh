@@ -75,32 +75,32 @@ menu() {
     echo
     echo "[*] Dostupne moznosti:"
     echo
-    echo "[a] Testovanie odozvy a Rate-limitingu"
-    echo "[b] Generovat hesla"
-    echo "[c] Brute-force na UKF Webmail"
-    echo "[d] Brute-force na UKF AiS"
-    echo "[e] Zistenie HTTP hlaviciek"
-    echo "[f] Zistenie technologii"
-    echo "[g] Zistenie IP adresy a polohy"
-    echo "[i] Hladat heslo vo vytvorenom zozname"
-    echo "[j] Zistenie technologii (python verzia)"
-    echo "[k] Mirror web stranky"
+    echo "[1] Testovanie odozvy a Rate-limitingu"
+    echo "[2] Generovat hesla"
+    echo "[3] Brute-force na UKF Webmail"
+    echo "[4] Brute-force na UKF AiS"
+    echo "[5] Zistenie HTTP hlaviciek"
+    echo "[6] Zistenie technologii"
+    echo "[7] Zistenie IP adresy a polohy"
+    echo "[8] Hladat heslo vo vytvorenom zozname"
+    echo "[9] Zistenie technologii (python verzia)"
+    echo "[10] Mirror web stranky"
     echo "[h] Napoveda"
     echo "[x] Ukoncit nastroj"
     echo
     read -rp "[*] Moznost: " choice
 
     case "$choice" in
-        a) bash "$BASE_DIR/modules/ping-uni.sh" ;;
-        b) bash "$BASE_DIR/modules/gen-pass.sh" ;;
-        c) python3 "$BASE_DIR/modules/brute-webmail.py" ;;
-        d) python3 "$BASE_DIR/modules/brute-ais.py" ;;
-        e) bash "$BASE_DIR/modules/http-headers.sh" ;;
-        f) bash "$BASE_DIR/modules/tech-detect.sh" ;;
-        g) bash "$BASE_DIR/modules/ip-info.sh" ;;
-        i) bash "$BASE_DIR/modules/find-pass.sh" ;;
-        j) python3 "$BASE_DIR/modules/tech-detect.py" ;;
-        k) bash "$BASE_DIR/modules/mirror-web.sh" ;;
+        1) "$BASE_DIR/modules/ping-uni.sh" ;;
+        2) "$BASE_DIR/modules/gen-pass.sh" ;;
+        3) "$BASE_DIR/modules/brute-webmail.py" ;;
+        4) "$BASE_DIR/modules/brute-ais.py" ;;
+        5) "$BASE_DIR/modules/http-headers.sh" ;;
+        6) "$BASE_DIR/modules/tech-detect.sh" ;;
+        7) "$BASE_DIR/modules/ip-info.sh" ;;
+        8) "$BASE_DIR/modules/find-pass.sh" ;;
+        9) "$BASE_DIR/modules/tech-detect.py" ;;
+        10) "$BASE_DIR/modules/mirror-web.sh" ;;
         h|-h|--help) show_help ;;
         x) exit 0 ;;
         *)

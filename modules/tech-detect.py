@@ -17,8 +17,8 @@ LOG_DIR = os.path.join(BASE_DIR, "logs")
 # URL selection
 def choose_url():
     print("[*] Zvol URL na testovanie")
-    print("[a] UKF Webmail")
-    print("[b] UKF AiS")
+    print("[1] UKF Webmail")
+    print("[2] UKF AiS")
     choice = input("Moznost: ").strip().lower()
 
     # vyber URL podla volby
@@ -219,8 +219,8 @@ def main():
         if choice == "y":
             extended_path = os.path.join(BASE_DIR, "extended", "detect-round.py")
             if os.path.isfile(extended_path):
-                print("[*] Spustam extended modul detect-round.py")
-                os.system(f"python3 {extended_path} {url}")
+                print("[*] Spustam extended modul detect-round.sh")
+                os.system(f"{extended_path} {url}")
             else:
                 print("[-] Extended modul neexistuje")
 

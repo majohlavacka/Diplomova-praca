@@ -2,16 +2,16 @@
 
 select_target() {
     echo "[*] Zvol ciel:"
-    echo "[a] UKF Webmail"
-    echo "[b] UKF AiS"
+    echo "[1] UKF Webmail"
+    echo "[2] UKF AiS"
     echo
     read -rp "Moznost: " choice
 
     case "$choice" in
-        a)
+        1)
             TARGET_URL="https://studentmail.ukf.sk/webmail/"
             ;;
-        b)
+        2)
             TARGET_URL="https://ais2.ukf.sk/ais/start.do"
             ;;
         *)
@@ -20,6 +20,5 @@ select_target() {
             ;;
     esac
 
-    # premenna TARGET_URL je dostupna pre ine moduly
     export TARGET_URL
 }
