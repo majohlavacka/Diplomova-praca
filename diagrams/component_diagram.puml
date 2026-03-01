@@ -20,6 +20,10 @@ package "Diplomova-Praca" {
     component "mirror-web.sh" as mirror_web <<Bash>>
   }
 
+  package lib {
+    component "targets.sh" as targets <<Bash>>
+  }
+
   package extended {
     component "detect-round.sh" as detect_round <<Bash>>
     component "detect-round.py" as detect_round_python <<Python>>
@@ -125,4 +129,6 @@ logs ..> tech_detect_url_date
 
 detect_round_python ..> logs : Vytvorí a zapíše
 logs ..> roundcube_detect_url_date
+
+modules ..> lib
 @enduml
