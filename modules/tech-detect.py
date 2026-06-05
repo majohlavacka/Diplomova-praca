@@ -219,7 +219,7 @@ def main():
         if choice == "y":
             extended_path = os.path.join(BASE_DIR, "extended", "detect-round.py")
             if os.path.isfile(extended_path):
-                print("[*] Spustam extended modul detect-round.sh")
+                print("[*] Spustam extended modul detect-round.py")
                 os.system(f"{extended_path} {url}")
             else:
                 print("[-] Extended modul neexistuje")
