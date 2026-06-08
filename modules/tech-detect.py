@@ -23,9 +23,9 @@ def choose_url():
 
     # vyber URL podla volby
     match choice:
-        case "a":
+        case "1":
             return "https://studentmail.ukf.sk/webmail/"
-        case "b":
+        case "2":
             return "https://ais2.ukf.sk/ais/start.do"
         case _:
             print("[-] Nespravna volba")
